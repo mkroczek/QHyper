@@ -30,6 +30,5 @@ class WFEval(EvalFunc):
         scaler = 1/sum([v for v in sorted_results.values()])
 
         for result, prob in sorted_results.items():
-            print(prob, result, problem.get_score(result, self.penalty))
             score += scaler * prob * problem.get_score(result, self.penalty)
         return score
