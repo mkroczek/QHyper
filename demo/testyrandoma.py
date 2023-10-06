@@ -2,7 +2,7 @@ import numpy as np
 import sympy
 from sympy.core.expr import Expr
 import sys
-sys.path.append('..')
+sys.path.append(".\\QHyper\\")
 from QHyper.problems.base import Problem
 from QHyper.util import Expression
     
@@ -65,35 +65,38 @@ tester_config = {
     'pqc': {
         'type': 'wfqaoa',
         'layers': 5,
-    }
+    },
+   # 'optimizer': {
+   #   'type': 'scipy',
+   #   'maxfun': 20,
+   # },
+    
 }
 
 tester = VQA(problem, config=tester_config)
 
 from QHyper.solvers import Solver
-hyper_optimizer_bounds = [(1, 3), (1,1.1),(1,3)]
+hyper_optimizer_bounds = [(1, 2), (1,2),(1,2)]
 solver_config2 = {
     "solver": {
         "type": "vqa",
         "args": {
             "config": {
-                "optimizer": {
-                    "type": "scipy",
-                    "maxfun": 200,
-                },
                 "pqc": {
                     "type": "qaoa",
                     "layers": 5,
-                }
+                },
+             "optimizer": {
+                    "type": "scipy",
+                    "maxfun": 100,
+               }
             }
         }
     },
-    "hyper_optimizer": {
-        "type": "random",    
-        "processes": 1,
-        "number_of_samples": 1,
-        "bounds": hyper_optimizer_bounds
-    }
+    #"hyper_optimizer": {
+      #   "type": 'scipy',
+       #  "maxfun": 15,
+   # }
 }
 
 vqa2 = Solver.from_config(problem, solver_config2)
@@ -106,3 +109,10 @@ params_config = {
 if __name__ == '__main__': 
     best_params = vqa2.solve(params_config)
     print(f"Best params: {best_params}")
+    
+   # best_params=tester.solve(best_params)
+    
+    best_results = tester.evaluate(best_params,  print_results=True)
+    print(f"Best results: {best_results}")
+    print(f"Params used for optimizer:\n{best_params['angles']},\n"
+            f"and params used for hyperoptimizer: {best_params['hyper_args']}")

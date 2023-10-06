@@ -76,7 +76,7 @@ class Random(Optimizer):
                 (self.bounds[:, 1] - self.bounds[:, 0])
                 * np.random.rand(self.number_of_samples, *hyperparams_init.shape)
                 + self.bounds[:, 0])
-
+        print(hyperparams)
             # results = [func(hyperparam) for hyperparam in hyperparams]        
         with mp.Pool(processes=self.processes) as p:
             results = list(tqdm.tqdm(

@@ -61,6 +61,6 @@ class ScipyOptimizer(Optimizer):
                 self.bounds if self.bounds is not None
                 else [(0, 2*np.pi)]*len(np.array(init).flatten())
             ),
-            options={'maxfun': self.maxfun}
+            options={'maxfun': self.maxfun, 'disp': True}
         )
         return result.fun, result.x.reshape(np.array(init).shape)
