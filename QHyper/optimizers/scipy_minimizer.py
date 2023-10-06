@@ -50,6 +50,7 @@ class ScipyOptimizer(Optimizer):
         tuple
             A tuple containing the minimum function value and the corresponding optimal point.
         """
+        
         def wrapper(params: npt.NDArray[np.float64]) -> float:
             return func(np.array(params).reshape(np.array(init).shape))
 
