@@ -70,24 +70,25 @@ class Random(Optimizer):
             Returns hyperparameters which lead to the lowest values
             returned by the optimizer
         """
-        if __name__ == '__main__':
-            hyperparams_init = np.array(init)
-            hyperparams = (
+        
+        hyperparams_init = np.array(init)
+        hyperparams = (
                 (self.bounds[:, 1] - self.bounds[:, 0])
                 * np.random.rand(self.number_of_samples, *hyperparams_init.shape)
                 + self.bounds[:, 0])
 
             # results = [func(hyperparam) for hyperparam in hyperparams]
-            print("a kuku haha") 
-            print("a kuku") 
-            with mp.Pool(processes=self.processes) as p:
-                results = list(tqdm.tqdm(
-                    p.imap(func, hyperparams),
-                    total=self.number_of_samples,
-                    disable=self.disable_tqdm
-                ))
+        print("a kuku haha") 
+        print("a kuku") 
+        with mp.Pool(processes=self.processes) as p:
+            print("a kuku haha2") 
+            results = list(tqdm.tqdm(
+                p.imap(func, hyperparams),
+                total=self.number_of_samples,
+                disable=self.disable_tqdm
+            ))
             
-            min_idx = np.argmin(results)
-            return results[min_idx], hyperparams[min_idx]
+        min_idx = np.argmin(results)
+        return results[min_idx], hyperparams[min_idx]
         # return HyperOptimizerResults.from_solver_results(
         #     results[min_idx], hyperparams[min_idx])
