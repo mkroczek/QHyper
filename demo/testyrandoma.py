@@ -65,12 +65,7 @@ tester_config = {
     'pqc': {
         'type': 'wfqaoa',
         'layers': 5,
-    },
-   # 'optimizer': {
-   #   'type': 'scipy',
-   #   'maxfun': 20,
-   # },
-    
+    }
 }
 
 tester = VQA(problem, config=tester_config)
@@ -83,27 +78,23 @@ solver_config2 = {
         "args": {
             "config": {
                 "pqc": {
-                    "type": "qaoa",
+                    "type": "wfqaoa",
                     "layers": 5,
                 },
              "optimizer": {
                     "type": "scipy",
-                    "maxfun": 100,
+                    "maxfun": 1200
                }
             }
         }
-    },
-    #"hyper_optimizer": {
-      #   "type": 'scipy',
-       #  "maxfun": 15,
-   # }
+    }
 }
 
 vqa2 = Solver.from_config(problem, solver_config2)
 params_config = {
         'angles': [[0.5]*5, [0.7]*5], # QAOA angles - first we have gammas (for the cost Hamiltonian), then we have betas (for the mixer)
        # 'hyper_args': [1, 1, 1], #  those are the alpha values from [1]
-       'hyper_args': [1, 1, 1]
+       'hyper_args': [1, 1, 1.2]
     }
 
 if __name__ == '__main__': 
