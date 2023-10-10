@@ -78,12 +78,11 @@ solver_config2 = {
         "args": {
             "config": {
                 "pqc": {
-                    "type": "wfqaoa",
+                    "type": "qaoa",
                     "layers": 5,
                 },
              "optimizer": {
-                    "type": "scipy",
-                    "maxfun": 1200
+                    "type": "qml"
                }
             }
         }

@@ -35,7 +35,8 @@ class QmlGradientDescent(Optimizer):
             number of optimization steps
         """
 
-        self.optimizer = optimizer if optimizer else qml.AdamOptimizer(
+       # self.optimizer = optimizer if optimizer else qml.AdamOptimizer(
+        self.optimizer = optimizer if optimizer else qml.QNGOptimizer(
             stepsize=0.005
         ) 
         self.optimization_steps = optimization_steps
@@ -68,5 +69,8 @@ class QmlGradientDescent(Optimizer):
             self.optimizer.reset()
         for _ in range(self.optimization_steps):
             params, cost = self.optimizer.step_and_cost(func, params)
+            print(cost,"\n")
             cost_history.append(cost)
+        
+    
         return cost, params
