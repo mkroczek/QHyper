@@ -15,7 +15,7 @@ from .mixers import MIXERS_BY_NAME
 
 
 @dataclass
-class QAOA(PQC):
+class SQAOA(PQC):
     layers: int = 3
     backend: str = "default.qubit"
     mixer: str = 'pl_x_mixer'

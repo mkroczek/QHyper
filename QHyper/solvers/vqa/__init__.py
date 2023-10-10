@@ -6,11 +6,13 @@ from .pqc.base import PQC
 from .pqc.h_qaoa import HQAOA
 from .pqc.qaoa import QAOA
 from .pqc.wf_qaoa import WFQAOA
+from .pqc.sqaoa import SQAOA
 
 PQC_BY_NAME: dict[str, Type[PQC]] = {
     'hqaoa': HQAOA,
     'qaoa': QAOA,
-    'wfqaoa': WFQAOA
+    'wfqaoa': WFQAOA,
+    'sqaoa': SQAOA
 }
 
 # # === Evaluation functions ===
