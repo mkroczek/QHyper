@@ -78,7 +78,7 @@ solver_config2 = {
         "args": {
             "config": {
                 "pqc": {
-                    "type": "qaoa",
+                    "type": "sqaoa",
                     "layers": 5,
                 },
              "optimizer": {
