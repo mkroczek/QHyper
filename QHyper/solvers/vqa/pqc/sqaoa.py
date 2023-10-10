@@ -63,7 +63,7 @@ class SQAOA(PQC):
             raise Exception(f"Unknown {self.mixer} mixer")
         return MIXERS_BY_NAME[self.mixer]([str(v) for v in problem.variables])
 
-    def _circuit(self, problem: Problem, params: npt.NDArray[np.float64],
+    def _circuit(self, problem: Problem, params,
                  cost_operator: qml.Hamiltonian) -> None:
 
         def qaoa_layer(gamma: list[float], beta: list[float]) -> None:
@@ -97,12 +97,43 @@ class SQAOA(PQC):
         self,
         problem: Problem,
         opt_args: npt.NDArray[np.float64],
-        hyper_args: npt.NDArray[np.float64]
-    ):
-        self.dev = qml.device(
-            self.backend, wires=[str(x) for x in problem.variables])
-        return self.get_expval_circuit(problem, list(hyper_args))(
-            opt_args.reshape(2, -1))
+        hyper_args: npt.NDArray[np.float64],
+        bla: Any
+    ):   
+            
+       # self.dev = qml.device(
+           # self.backend, wires=[str(x) for x in problem.variables])
+       # self.get_expval_circuit(problem, list(hyper_args))(
+           # opt_args.reshape(2, -1))
+       
+       # qubo = Converter.create_qubo(problem, list(hyper_args))
+       # cost_operator = self._create_cost_operator(qubo)
+         
+
+       # @qml.qnode(self.dev)
+        #def expval_circuit(params):
+           # self._circuit(problem,params,cost_operator)
+            
+          #  return qml.expval(
+          #      cost_operator
+                # self._create_weight_free_hamiltonian(problem)
+          #  )
+        
+        print("bla")    
+        dev = qml.device("default.qubit", wires=(0, 1, "aux"))
+        @qml.qnode(dev)
+        def mcircuit(params):
+            qml.RX(params[0], wires=0)
+            qml.RY(params[1], wires=0)
+            return qml.expval(qml.PauliX(0) + qml.PauliX(1))
+        init_params =np.array([0.011, 0.012])
+        #init_params = np.array([[0.5], [0.7]])
+        opt = qml.QNGOptimizer(0.01)
+     
+        pa, cost = opt.step(mcircuit,init_params)
+        print(cost,"\n")
+            
+        return 0
 
     def get_opt_args(
         self,

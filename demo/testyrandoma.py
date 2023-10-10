@@ -80,10 +80,7 @@ solver_config2 = {
                 "pqc": {
                     "type": "sqaoa",
                     "layers": 5,
-                },
-             "optimizer": {
-                    "type": "qml"
-               }
+                }
             }
         }
     }
@@ -97,7 +94,7 @@ params_config = {
     }
 
 if __name__ == '__main__': 
-    best_params = vqa2.solve(params_config)
+    best_params = vqa2.evaluate(params_config)
     print(f"Best params: {best_params}")
     
    # best_params=tester.solve(best_params)
