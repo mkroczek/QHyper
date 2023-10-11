@@ -35,8 +35,8 @@ class QmlGradientDescent(Optimizer):
             number of optimization steps
         """
 
-       # self.optimizer = optimizer if optimizer else qml.AdamOptimizer(
-        self.optimizer = optimizer if optimizer else qml.QNGOptimizer(
+        self.optimizer = optimizer if optimizer else qml.AdamOptimizer(
+        #self.optimizer = optimizer if optimizer else qml.QNGOptimizer(
             stepsize=0.005
         ) 
         self.optimization_steps = optimization_steps

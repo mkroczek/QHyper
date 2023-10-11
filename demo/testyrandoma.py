@@ -83,6 +83,7 @@ solver_config2 = {
                 }
             }
         }
+        
     }
 }
 
@@ -97,9 +98,9 @@ if __name__ == '__main__':
     best_params = vqa2.evaluate(params_config)
     print(f"Best params: {best_params}")
     
-   # best_params=tester.solve(best_params)
+   #best_params=tester.solve(best_params)
     
     best_results = tester.evaluate(best_params,  print_results=True)
     print(f"Best results: {best_results}")
     print(f"Params used for optimizer:\n{best_params['angles']},\n"
-            f"and params used for hyperoptimizer: {best_params['hyper_args']}")
+           f"and params used for hyperoptimizer: {best_params['hyper_args']}")

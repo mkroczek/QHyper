@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import pennylane as qml
-import numpy as np
+from pennylane import numpy as np
 from scipy.sparse import csr_matrix
 
 import numpy.typing as npt

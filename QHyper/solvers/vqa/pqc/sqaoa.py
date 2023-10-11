@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import pennylane as qml
-import numpy as np
+from pennylane import numpy as np
 from scipy.sparse import csr_matrix
 
 import numpy.typing as npt
@@ -37,22 +37,7 @@ class SQAOA(PQC):
             result += tmp
         return result
     
-    def _create_weight_free_hamiltonian(
-            self, problem: Problem) -> qml.Hamiltonian:
-        row = []
-        col = []
-        data = []
-
-        for i in range(2**len(problem.variables)):
-            row.append(i)
-            col.append(i)
-            data.append(problem.get_score(
-                format(i, 'b').zfill(len(problem.variables)),
-                penalty=0.1
-            ))
-        sparse_matrix = csr_matrix((data, (row, col)))
-        ham = qml.SparseHamiltonian(sparse_matrix, problem.variables)
-        return ham
+   
  
     def _hadamard_layer(self, problem: Problem) -> None:
         for i in problem.variables:
@@ -98,42 +83,34 @@ class SQAOA(PQC):
         problem: Problem,
         opt_args: npt.NDArray[np.float64],
         hyper_args: npt.NDArray[np.float64],
-        bla: Any
+        print_results: bool = False
     ):   
             
-       # self.dev = qml.device(
-           # self.backend, wires=[str(x) for x in problem.variables])
-       # self.get_expval_circuit(problem, list(hyper_args))(
-           # opt_args.reshape(2, -1))
+        self.dev = qml.device(
+           self.backend, wires=[str(x) for x in problem.variables])
+        self.get_expval_circuit(problem, list(hyper_args))(
+           opt_args.reshape(2, -1))
        
-       # qubo = Converter.create_qubo(problem, list(hyper_args))
-       # cost_operator = self._create_cost_operator(qubo)
-         
+        qubo = Converter.create_qubo(problem, list(hyper_args))
+        cost_operator = self._create_cost_operator(qubo)
+        for i in range(32):
+            print(bin(i), round(abs(qml.matrix(cost_operator)[i,i]),2))
 
-       # @qml.qnode(self.dev)
-        #def expval_circuit(params):
-           # self._circuit(problem,params,cost_operator)
-            
-          #  return qml.expval(
-          #      cost_operator
-                # self._create_weight_free_hamiltonian(problem)
-          #  )
+        @qml.qnode(self.dev)
+        def expval_circuit(params):
+           self._circuit(problem,params,cost_operator) 
+           return qml.expval(
+               cost_operator)
         
-        print("bla")    
-        dev = qml.device("default.qubit", wires=(0, 1, "aux"))
-        @qml.qnode(dev)
-        def mcircuit(params):
-            qml.RX(params[0], wires=0)
-            qml.RY(params[1], wires=0)
-            return qml.expval(qml.PauliX(0) + qml.PauliX(1))
-        init_params =np.array([0.011, 0.012])
-        #init_params = np.array([[0.5], [0.7]])
         opt = qml.QNGOptimizer(0.01)
-     
-        pa, cost = opt.step(mcircuit,init_params)
-        print(cost,"\n")
+        params = np.array(opt_args, requires_grad=True)
+        for ind in range(1):
+            params, cost = opt.step_and_cost(expval_circuit,params)
+            print(ind, " ", cost,"\n")    
             
-        return 0
+        return self.get_params_init_format(params, hyper_args)
+
+      
 
     def get_opt_args(
         self,
