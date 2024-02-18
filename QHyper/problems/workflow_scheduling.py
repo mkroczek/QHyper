@@ -231,17 +231,17 @@ class WorkflowSchedulingProblem(Problem):
             cost += self.workflow.cost_matrix.loc[task, machine]
         return cost
 
-    def calculate_partial_timespan(self, workflow: Workflow, task, solution, timespan):
+    def calculate_partial_timespan(self, task, solution, timespan):
         if task in timespan:
             return timespan[task]
-        parents = workflow.wf_instance.workflow.tasks_parents[task]
-        max_parent_timespan = max([self.calculate_partial_timespan(workflow, parent, solution, timespan) for parent in
+        parents = self.workflow.wf_instance.workflow.tasks_parents[task]
+        max_parent_timespan = max([self.calculate_partial_timespan(parent, solution, timespan) for parent in
                                    parents]) if parents else 0
         machine = solution[task]
-        timespan[task] = workflow.time_matrix.loc[task, machine] + max_parent_timespan
+        timespan[task] = self.workflow.time_matrix.loc[task, machine] + max_parent_timespan
         return timespan[task]
 
-    def calculate_solution_timespan(self, workflow: Workflow, solution: dict):
+    def calculate_solution_timespan(self, solution: dict):
         timespan = {}
-        last_task = workflow.wf_instance.leaves()[0]
-        return self.calculate_partial_timespan(workflow, last_task, solution, timespan)
+        last_task = self.workflow.wf_instance.leaves()[0]
+        return self.calculate_partial_timespan(last_task, solution, timespan)

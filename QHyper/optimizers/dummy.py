@@ -12,7 +12,7 @@ import numpy.typing as npt
 from .base import Optimizer, OptimizationResult
 
 
-@dataclass
+@dataclass(frozen=True)
 class Dummy(Optimizer):
     def minimize(
             self,
