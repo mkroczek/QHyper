@@ -24,8 +24,34 @@ class ConnectingTask(Task):
             task_type=TaskType.COMPUTE,
             runtime=0,
             cores=1,
-            machine=ArtificialMachine()
+            machine=ArtificialMachine(),
+            category="artificial"
         )
+
+
+def preprocess_workflow(workflow: Workflow) -> WfWorkflow:
+    old_workflow = workflow.wf_instance.workflow
+    # create new WfWorkflow
+    wf_workflow = create_subworkflow(old_workflow, old_workflow.tasks.keys(), old_workflow.name)
+    if len(wf_workflow.roots()) > 1:
+        add_entry_task(wf_workflow, ConnectingTask(name="entry_task"))
+    if len(wf_workflow.leaves()) > 1:
+        add_exit_task(wf_workflow, ConnectingTask(name="exit_task"))
+    return wf_workflow
+
+
+def add_entry_task(workflow: WfWorkflow, entry_task: Task):
+    roots = workflow.roots()
+    workflow.add_task(entry_task)
+    for root in roots:
+        workflow.add_dependency(entry_task.name, root)
+
+
+def add_exit_task(workflow: WfWorkflow, exit_task: Task):
+    leaves = workflow.leaves()
+    workflow.add_task(exit_task)
+    for leaf in leaves:
+        workflow.add_dependency(leaf, exit_task.name)
 
 
 def create_subworkflows(workflow: Workflow, parts: list) -> list:
@@ -99,7 +125,15 @@ class HeftBasedAlgorithm:
             current_sum += mean_times[task]
         return parts
 
-    def decompose(self, workflow: Workflow, n_parts=2) -> list:
+    def split_deadline(self, deadline: float, chunks: list, mean_times: dict) -> list:
+        mean_times_sum = sum(mean_times.values())
+        deadline_per_chunk = []
+        for chunk in chunks:
+            chunk_mean_time_sum = sum(map(lambda task: mean_times[task], chunk))
+            deadline_per_chunk.append(chunk_mean_time_sum / mean_times_sum * deadline)
+        return deadline_per_chunk
+
+    def decompose(self, workflow: Workflow, n_parts: int) -> tuple:
         mean_times = workflow.time_matrix.mean(axis=1).to_dict()
         rank_up = {}
 
@@ -107,13 +141,14 @@ class HeftBasedAlgorithm:
 
         self.calc_rank_up(workflow, first_task, rank_up, mean_times)
         split_chunks = self.select_split_chunks(rank_up, n_parts)
-        # split_chunks = select_split_chunks_enhanced(rank_up, n_parts, mean_times)
+        deadline = workflow.deadline
+        deadline_per_chunk = self.split_deadline(deadline, split_chunks, mean_times)
 
-        return create_subworkflows(workflow, split_chunks)
+        return create_subworkflows(workflow, split_chunks), deadline_per_chunk
 
 
 class SimpleSplit:
-    def decompose(self, workflow: Workflow, n_parts=2) -> list:
+    def decompose(self, workflow: Workflow, n_parts: int) -> list:
         wf_workflow = workflow.wf_instance.workflow
         first_task = workflow.wf_instance.roots()[0]
         distances_from_root = nx.shortest_path_length(wf_workflow, first_task)
