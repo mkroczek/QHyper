@@ -6,9 +6,11 @@
 from typing import Any, Optional
 
 import gurobipy as gp
+
 from QHyper.problems.base import Problem
 from QHyper.solvers.base import Solver
 from QHyper.solvers.converter import QUBO
+from QHyper.util import Constraint, Operator
 
 
 def calc(vars: dict[str, Any], poly_dict: QUBO) -> Any:
@@ -19,6 +21,14 @@ def calc(vars: dict[str, Any], poly_dict: QUBO) -> Any:
             tmp *= vars[k]
         cost_function += tmp * value
     return cost_function
+
+
+def create_constraint(vars: dict[str, Any], constraint: Constraint) -> Any:
+    tmp_constraint = calc(vars, constraint.lhs)
+    if constraint.operator == Operator.EQ:
+        return tmp_constraint == constraint.rhs
+    else:
+        return tmp_constraint <= constraint.rhs
 
 
 class Gurobi(Solver):  # todo works only for quadratic expressions
@@ -42,13 +52,12 @@ class Gurobi(Solver):  # todo works only for quadratic expressions
         # gpm.update()
 
         objective_function = calc(
-            vars, self.problem.objective_function.as_dict()
+            vars, self.problem.objective_function.dictionary
         )
         gpm.setObjective(objective_function, gp.GRB.MINIMIZE)
 
         for i, constraint in enumerate(self.problem.constraints):
-            tmp_constraint = calc(vars, constraint.as_dict())
-            gpm.addConstr(tmp_constraint == 0, f"constr_{i}")
+            gpm.addConstr(create_constraint(vars, constraint), f"constr_{i}")
             gpm.update()
 
         # eq_constraints = self.problem.constraints["=="]
