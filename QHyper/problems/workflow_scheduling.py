@@ -113,7 +113,7 @@ class WorkflowSchedulingOneHot(Problem):
                 len(self.workflow.tasks) * len(self.workflow.machines)
             )
         ]))
-        self._set_objective_function()
+        self._set_objective_function_simplified()
         self._set_constraints()
 
     def _set_objective_function(self) -> None:
@@ -131,6 +131,15 @@ class WorkflowSchedulingOneHot(Problem):
                 )
 
         self.objective_function: Expression = Expression(expression)
+
+    def _set_objective_function_simplified(self) -> None:
+        expression_dict = {}
+        cost_per_variable = zip(self.variables, self.workflow.cost_matrix.to_numpy().flatten())
+        cost_per_variable = sorted(cost_per_variable, key=lambda x: str(x[0]))
+        for variable, cost in cost_per_variable:
+            cost_str = "{:.15g}".format(cost)
+            expression_dict[tuple([str(variable)])] = float(cost_str)
+        self.objective_function: Expression = Expression(expression_dict)
 
     def _set_constraints(self) -> None:
         self.constraints: list[Constraint] = []
