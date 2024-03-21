@@ -1,6 +1,7 @@
 import pathlib
 import tempfile
 from copy import copy
+from dataclasses import dataclass
 from typing import Optional, Union, Set, Tuple
 
 import matplotlib.patches as mpatches
@@ -9,13 +10,41 @@ import networkx as nx
 from matplotlib import cm
 from wfcommons.common.workflow import Workflow as WfWorkflow
 
-from QHyper.problems.workflow_scheduling import Workflow
+from QHyper.problems.workflow_scheduling import Workflow, TargetMachine, WorkflowSchedulingOneHot, \
+    WorkflowSchedulingBinary
+from QHyper.solvers import Solver, SolverResult
 
 
-def wfworkflow_to_qhyper_workflow(workflow: WfWorkflow, machines_file: str, deadline: float) -> Workflow:
+@dataclass(frozen=True)
+class WorkflowSchedule:
+    cost: float
+    time: float
+    machine_assignment: dict[str, str]
+    workflow: Workflow
+
+
+class WorkflowSchedulingSolverDecorator:
+    def __init__(self, solver: Solver):
+        self.solver: Solver = solver
+        self.problem: WorkflowSchedulingOneHot | WorkflowSchedulingBinary = solver.problem
+
+    def solve(self) -> WorkflowSchedule:
+        solver_result: SolverResult = self.solver.solve(params_inits={"name": "wsp"})
+        machine_assignment = self.problem.decode_solution(solver_result)
+
+        return WorkflowSchedule(
+            cost=self.problem.calculate_solution_cost(machine_assignment),
+            time=self.problem.calculate_solution_timespan(machine_assignment),
+            machine_assignment=machine_assignment,
+            workflow=self.problem.workflow
+        )
+
+
+def wfworkflow_to_qhyper_workflow(workflow: WfWorkflow, machines: str | dict[str, TargetMachine],
+                                  deadline: float) -> Workflow:
     with tempfile.NamedTemporaryFile() as temp:
         workflow.write_json(pathlib.Path(temp.name))
-        return Workflow(pathlib.Path(temp.name), machines_file, deadline)
+        return Workflow(pathlib.Path(temp.name), machines, deadline)
 
 
 def merge_subworkflows(subworkflows: list) -> WfWorkflow:

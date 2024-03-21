@@ -32,10 +32,10 @@ class TargetMachine:
 
 
 class Workflow:
-    def __init__(self, tasks_file: str, machines_file: str, deadline: float) -> None:
+    def __init__(self, tasks_file: str, machines: str | dict[str, TargetMachine], deadline: float) -> None:
         self.wf_instance = Instance(tasks_file)
         self.tasks = self._get_tasks()
-        self.machines = self._get_machines(machines_file)
+        self.machines = self._get_machines(machines)
         self.deadline = deadline
         self._set_paths()
         self.time_matrix, self.cost_matrix = self._calc_dataframes()
@@ -45,12 +45,15 @@ class Workflow:
     def _get_tasks(self) -> NodeView:
         return self.wf_instance.workflow.nodes(data=True)
 
-    def _get_machines(self, machines_file: str) -> dict[str, TargetMachine]:
-        target_machines = read_json(machines_file)
-        return {
-            machine["name"]: TargetMachine(**machine)
-            for machine in target_machines["machines"]
-        }
+    def _get_machines(self, machines: str | dict[str, TargetMachine]) -> dict[str, TargetMachine]:
+        if isinstance(machines, dict):
+            return machines
+        else:
+            target_machines = read_json(machines)
+            return {
+                machine["name"]: TargetMachine(**machine)
+                for machine in target_machines["machines"]
+            }
 
     def _set_paths(self) -> None:
         all_paths = []
@@ -225,26 +228,27 @@ class WorkflowSchedulingOneHot(Problem):
 
         return penalty
 
-    def calculate_solution_cost(self, solution: dict):
-        cost = 0.0
-        for task, machine in solution.items():
+    def calculate_solution_cost(self, machine_assignment: dict[str, str]) -> float:
+        cost: float = 0.0
+        for task, machine in machine_assignment.items():
             cost += self.workflow.cost_matrix.loc[task, machine]
         return cost
 
-    def calculate_partial_timespan(self, task, solution, timespan):
+    def calculate_partial_timespan(self, task: str, machine_assignment: dict[str, str],
+                                   timespan: dict[str, float]) -> float:
         if task in timespan:
             return timespan[task]
         parents = self.workflow.wf_instance.workflow.tasks_parents[task]
-        max_parent_timespan = max([self.calculate_partial_timespan(parent, solution, timespan) for parent in
+        max_parent_timespan = max([self.calculate_partial_timespan(parent, machine_assignment, timespan) for parent in
                                    parents]) if parents else 0
-        machine = solution[task]
+        machine = machine_assignment[task]
         timespan[task] = self.workflow.time_matrix.loc[task, machine] + max_parent_timespan
         return timespan[task]
 
-    def calculate_solution_timespan(self, solution: dict):
-        timespan = {}
+    def calculate_solution_timespan(self, machine_assignment: dict[str, str]) -> float:
+        timespan: dict[str, float] = {}
         last_task = self.workflow.wf_instance.leaves()[0]
-        return self.calculate_partial_timespan(last_task, solution, timespan)
+        return self.calculate_partial_timespan(last_task, machine_assignment, timespan)
 
 
 class WorkflowSchedulingBinary(Problem):
@@ -361,23 +365,24 @@ class WorkflowSchedulingBinary(Problem):
 
         return cost_of_used_machines
 
-    def calculate_solution_cost(self, solution: dict):
-        cost = 0.0
-        for task, machine in solution.items():
+    def calculate_solution_cost(self, machine_assignment: dict[str, str]) -> float:
+        cost: float = 0.0
+        for task, machine in machine_assignment.items():
             cost += self.workflow.cost_matrix.loc[task, machine]
         return cost
 
-    def calculate_partial_timespan(self, task, solution, timespan):
+    def calculate_partial_timespan(self, task: str, machine_assignment: dict[str, str],
+                                   timespan: dict[str, float]) -> float:
         if task in timespan:
             return timespan[task]
         parents = self.workflow.wf_instance.workflow.tasks_parents[task]
-        max_parent_timespan = max([self.calculate_partial_timespan(parent, solution, timespan) for parent in
+        max_parent_timespan = max([self.calculate_partial_timespan(parent, machine_assignment, timespan) for parent in
                                    parents]) if parents else 0
-        machine = solution[task]
+        machine = machine_assignment[task]
         timespan[task] = self.workflow.time_matrix.loc[task, machine] + max_parent_timespan
         return timespan[task]
 
-    def calculate_solution_timespan(self, solution: dict):
-        timespan = {}
+    def calculate_solution_timespan(self, machine_assignment: dict[str, str]) -> float:
+        timespan: dict[str, float] = {}
         last_task = self.workflow.wf_instance.leaves()[0]
-        return self.calculate_partial_timespan(last_task, solution, timespan)
+        return self.calculate_partial_timespan(last_task, machine_assignment, timespan)

@@ -1,17 +1,35 @@
 {
-    "workflow": "workflows_data/workflows/srasearch_22_tasks.json",
-    "machines": "workflows_data/machines/cyfronet.json",
+    "workflow_file": "workflows_data/workflows/srasearch_22_tasks.json",
+    "machines_file": "workflows_data/machines/cyfronet.json",
     "deadline": 5000,
-    "division": {
-        "method": "HeftBasedAlgorithm",
-        "workflows": [
+    "solution": {
+        "solver": "Gurobi",
+        "total_cost": 227267.28406200005,
+        "total_time": 3887.9027460000007,
+        "parts": [
             {
-                "id": 0,
+                "cost": 209575.00336500004,
+                "time": 3520.9792800000005,
                 "deadline": 4611,
+                "machine_assignment": {
+                    "fasterq-dump_ID0000020": "AresGpu",
+                    "entry_task": "AresCpu",
+                    "fasterq-dump_ID0000002": "AresGpu",
+                    "fasterq-dump_ID0000016": "AresGpu",
+                    "fasterq-dump_ID0000018": "AresGpu",
+                    "fasterq-dump_ID0000010": "AresGpu",
+                    "fasterq-dump_ID0000006": "AresGpu",
+                    "fasterq-dump_ID0000012": "AresGpu",
+                    "fasterq-dump_ID0000004": "AresGpu",
+                    "fasterq-dump_ID0000008": "AresGpu",
+                    "fasterq-dump_ID0000014": "AresGpu",
+                    "bowtie2-build_ID0000001": "AresCpu",
+                    "Task0_1": "AresCpu"
+                },
                 "workflow": {
                     "name": "workflowsubworkflow0",
                     "description": "Instance generated with WfCommons - https://wfcommons.org",
-                    "createdAt": "2024-03-19T19:44:34.172809+01:00",
+                    "createdAt": "2024-03-21T18:33:34.779909+01:00",
                     "schemaVersion": "1.4",
                     "author": {
                         "name": "marcin",
@@ -23,7 +41,7 @@
                         "url": "https://docs.wfcommons.org/en/v1.0-dev/"
                     },
                     "workflow": {
-                        "executedAt": "2024-03-19T19:44:34.172830+01:00",
+                        "executedAt": "2024-03-21T18:33:34.779938+01:00",
                         "makespanInSeconds": 0.0,
                         "tasks": [
                             {
@@ -507,12 +525,27 @@
                 }
             },
             {
-                "id": 1,
+                "cost": 17692.280697000002,
+                "time": 366.923466,
                 "deadline": 389,
+                "machine_assignment": {
+                    "bowtie2_ID0000021": "AresGpu",
+                    "bowtie2_ID0000017": "AresGpu",
+                    "bowtie2_ID0000019": "AresGpu",
+                    "bowtie2_ID0000007": "AresGpu",
+                    "bowtie2_ID0000003": "AresGpu",
+                    "bowtie2_ID0000005": "AresGpu",
+                    "bowtie2_ID0000013": "AresGpu",
+                    "bowtie2_ID0000009": "AresGpu",
+                    "bowtie2_ID0000011": "AresGpu",
+                    "bowtie2_ID0000015": "AresGpu",
+                    "merge_ID0000022": "AresCpu",
+                    "Task0_1": "AresCpu"
+                },
                 "workflow": {
                     "name": "workflowsubworkflow1",
                     "description": "Instance generated with WfCommons - https://wfcommons.org",
-                    "createdAt": "2024-03-19T19:44:34.173000+01:00",
+                    "createdAt": "2024-03-21T18:33:34.780209+01:00",
                     "schemaVersion": "1.4",
                     "author": {
                         "name": "marcin",
@@ -524,7 +557,7 @@
                         "url": "https://docs.wfcommons.org/en/v1.0-dev/"
                     },
                     "workflow": {
-                        "executedAt": "2024-03-19T19:44:34.173011+01:00",
+                        "executedAt": "2024-03-21T18:33:34.780228+01:00",
                         "makespanInSeconds": 0.0,
                         "tasks": [
                             {
@@ -1471,51 +1504,5 @@
             }
         ]
     },
-    "solution": {
-        "solver": "Gurobi",
-        "workflows": [
-            {
-                "id": 0,
-                "machine_assignment": {
-                    "fasterq-dump_ID0000020": "AresGpu",
-                    "entry_task": "AresCpu",
-                    "fasterq-dump_ID0000002": "AresGpu",
-                    "fasterq-dump_ID0000016": "AresGpu",
-                    "fasterq-dump_ID0000018": "AresGpu",
-                    "fasterq-dump_ID0000010": "AresGpu",
-                    "fasterq-dump_ID0000006": "AresGpu",
-                    "fasterq-dump_ID0000012": "AresGpu",
-                    "fasterq-dump_ID0000004": "AresGpu",
-                    "fasterq-dump_ID0000008": "AresGpu",
-                    "fasterq-dump_ID0000014": "AresGpu",
-                    "bowtie2-build_ID0000001": "AresCpu",
-                    "Task0_1": "AresCpu"
-                },
-                "cost": 209575.00336500004,
-                "time": 3520.9792800000005
-            },
-            {
-                "id": 1,
-                "machine_assignment": {
-                    "bowtie2_ID0000021": "AresGpu",
-                    "bowtie2_ID0000017": "AresGpu",
-                    "bowtie2_ID0000019": "AresGpu",
-                    "bowtie2_ID0000007": "AresGpu",
-                    "bowtie2_ID0000003": "AresGpu",
-                    "bowtie2_ID0000005": "AresGpu",
-                    "bowtie2_ID0000013": "AresGpu",
-                    "bowtie2_ID0000009": "AresGpu",
-                    "bowtie2_ID0000011": "AresGpu",
-                    "bowtie2_ID0000015": "AresGpu",
-                    "merge_ID0000022": "AresCpu",
-                    "Task0_1": "AresCpu"
-                },
-                "cost": 17692.280697000002,
-                "time": 366.923466
-            }
-        ],
-        "cost": 227267.28406200005,
-        "time": 3887.9027460000007
-    },
-    "timestamp": "2024-03-19T19:44:34.312269"
+    "timestamp": "2024-03-21T18:33:02.581426"
 }

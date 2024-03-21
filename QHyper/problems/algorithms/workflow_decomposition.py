@@ -1,9 +1,13 @@
+from copy import deepcopy
+from dataclasses import dataclass, field
+
 import networkx as nx
 import numpy as np
 from wfcommons.common.machine import Machine
 from wfcommons.common.task import Task, TaskType
 from wfcommons.common.workflow import Workflow as WfWorkflow
 
+from QHyper.problems.algorithms.utils import wfworkflow_to_qhyper_workflow
 from QHyper.problems.workflow_scheduling import Workflow
 
 
@@ -29,15 +33,20 @@ class ConnectingTask(Task):
         )
 
 
-def preprocess_workflow(workflow: Workflow) -> WfWorkflow:
-    old_workflow = workflow.wf_instance.workflow
-    # create new WfWorkflow
-    wf_workflow = create_subworkflow(old_workflow, old_workflow.tasks.keys(), old_workflow.name)
-    if len(wf_workflow.roots()) > 1:
-        add_entry_task(wf_workflow, ConnectingTask(name="entry_task"))
-    if len(wf_workflow.leaves()) > 1:
-        add_exit_task(wf_workflow, ConnectingTask(name="exit_task"))
-    return wf_workflow
+@dataclass
+class Division:
+    method: str
+    workflows: list[Workflow] = field(default_factory=list)
+
+
+def add_entry_and_exit_tasks(workflow: Workflow) -> Workflow:
+    old_workflow: WfWorkflow = workflow.wf_instance.workflow
+    workflow_copy: WfWorkflow = create_subworkflow(old_workflow, old_workflow.tasks.keys(), old_workflow.name)
+    if len(workflow_copy.roots()) > 1:
+        add_entry_task(workflow_copy, ConnectingTask(name="entry_task"))
+    if len(workflow_copy.leaves()) > 1:
+        add_exit_task(workflow_copy, ConnectingTask(name="exit_task"))
+    return wfworkflow_to_qhyper_workflow(workflow_copy, deepcopy(workflow.machines), workflow.deadline)
 
 
 def add_entry_task(workflow: WfWorkflow, entry_task: Task):
@@ -54,7 +63,7 @@ def add_exit_task(workflow: WfWorkflow, exit_task: Task):
         workflow.add_dependency(leaf, exit_task.name)
 
 
-def create_subworkflows(workflow: Workflow, parts: list) -> list:
+def create_subworkflows(workflow: Workflow, parts: list) -> list[WfWorkflow]:
     wfworkflow = workflow.wf_instance.workflow
     subworkflows = []
     for pair_id, pair in enumerate(zip(parts[:-1], parts[1:])):
@@ -125,15 +134,15 @@ class HeftBasedAlgorithm:
             current_sum += mean_times[task]
         return parts
 
-    def split_deadline(self, deadline: float, chunks: list, mean_times: dict) -> list:
+    def split_deadline(self, deadline: float, chunks: list, mean_times: dict) -> list[int]:
         mean_times_sum = sum(mean_times.values())
         deadline_per_chunk = []
         for chunk in chunks:
             chunk_mean_time_sum = sum(map(lambda task: mean_times[task], chunk))
-            deadline_per_chunk.append(chunk_mean_time_sum / mean_times_sum * deadline)
+            deadline_per_chunk.append(round(chunk_mean_time_sum / mean_times_sum * deadline))
         return deadline_per_chunk
 
-    def decompose(self, workflow: Workflow, n_parts: int) -> tuple:
+    def decompose(self, workflow: Workflow, n_parts: int) -> Division:
         mean_times = workflow.time_matrix.mean(axis=1).to_dict()
         rank_up = {}
 
@@ -143,16 +152,31 @@ class HeftBasedAlgorithm:
         split_chunks = self.select_split_chunks(rank_up, n_parts)
         deadline = workflow.deadline
         deadline_per_chunk = self.split_deadline(deadline, split_chunks, mean_times)
+        subworkflows = create_subworkflows(workflow, split_chunks)
 
-        return create_subworkflows(workflow, split_chunks), deadline_per_chunk
+        division = Division("HeftBasedAlgorithm")
+
+        for subworkflow, subdeadline in zip(subworkflows, deadline_per_chunk):
+            division.workflows.append(wfworkflow_to_qhyper_workflow(subworkflow, workflow.machines, subdeadline))
+
+        return division
 
 
 class SimpleSplit:
-    def decompose(self, workflow: Workflow, n_parts: int) -> list:
+    def split_deadline(self, deadline: float, chunks: list) -> list[int]:
+        raise NotImplementedError
+
+    def decompose(self, workflow: Workflow, n_parts: int) -> Division:
         wf_workflow = workflow.wf_instance.workflow
         first_task = workflow.wf_instance.roots()[0]
         distances_from_root = nx.shortest_path_length(wf_workflow, first_task)
         sorted_tasks = sorted(distances_from_root, key=distances_from_root.get)
         split_chunks = np.array_split(sorted_tasks, n_parts)
 
-        return create_subworkflows(workflow, split_chunks)
+        division = Division("SimpleSplitAlgorithm")
+
+        for subworkflow, subdeadline in zip(create_subworkflows(workflow, split_chunks),
+                                            self.split_deadline(workflow.deadline, split_chunks)):
+            division.workflows.append(wfworkflow_to_qhyper_workflow(subworkflow, workflow.machines, subdeadline))
+
+        return division

@@ -1,13 +1,40 @@
 {
-    "workflow": "workflows_data/workflows/srasearch_22_tasks.json",
-    "machines": "workflows_data/machines/cyfronet.json",
+    "workflow_file": "workflows_data/workflows/srasearch_22_tasks.json",
+    "machines_file": "workflows_data/machines/cyfronet.json",
     "deadline": 5000,
-    "division": {
-        "method": "NoDivision",
-        "workflows": [
+    "solution": {
+        "solver": "Gurobi",
+        "total_cost": 226101.15724079523,
+        "total_time": 4823.302848,
+        "parts": [
             {
-                "id": 0,
+                "cost": 226101.15724079523,
+                "time": 4823.302848,
                 "deadline": 5000,
+                "machine_assignment": {
+                    "bowtie2-build_ID0000001": "AresCpu",
+                    "fasterq-dump_ID0000002": "AresGpu",
+                    "bowtie2_ID0000003": "AresGpu",
+                    "fasterq-dump_ID0000004": "AresGpu",
+                    "bowtie2_ID0000005": "PrometeusGpu",
+                    "fasterq-dump_ID0000006": "AresGpu",
+                    "bowtie2_ID0000007": "PrometeusGpu",
+                    "fasterq-dump_ID0000008": "AresGpu",
+                    "bowtie2_ID0000009": "PrometeusGpu",
+                    "fasterq-dump_ID0000010": "AresGpu",
+                    "bowtie2_ID0000011": "PrometeusGpu",
+                    "fasterq-dump_ID0000012": "AresGpu",
+                    "bowtie2_ID0000013": "PrometeusGpu",
+                    "fasterq-dump_ID0000014": "AresGpu",
+                    "bowtie2_ID0000015": "PrometeusGpu",
+                    "fasterq-dump_ID0000016": "AresGpu",
+                    "bowtie2_ID0000017": "AresGpu",
+                    "fasterq-dump_ID0000018": "AresGpu",
+                    "bowtie2_ID0000019": "PrometeusGpu",
+                    "fasterq-dump_ID0000020": "AresGpu",
+                    "bowtie2_ID0000021": "AresGpu",
+                    "merge_ID0000022": "ZeusCpu"
+                },
                 "workflow": {
                     "name": "workflow-test",
                     "description": "Trace generated with WorkflowHub - https://workflowhub.org",
@@ -1371,40 +1398,5 @@
             }
         ]
     },
-    "solution": {
-        "solver": "Gurobi",
-        "workflows": [
-            {
-                "id": 0,
-                "machine_assignment": {
-                    "bowtie2-build_ID0000001": "AresCpu",
-                    "fasterq-dump_ID0000002": "AresGpu",
-                    "bowtie2_ID0000003": "AresGpu",
-                    "fasterq-dump_ID0000004": "AresGpu",
-                    "bowtie2_ID0000005": "PrometeusGpu",
-                    "fasterq-dump_ID0000006": "AresGpu",
-                    "bowtie2_ID0000007": "PrometeusGpu",
-                    "fasterq-dump_ID0000008": "AresGpu",
-                    "bowtie2_ID0000009": "PrometeusGpu",
-                    "fasterq-dump_ID0000010": "AresGpu",
-                    "bowtie2_ID0000011": "PrometeusGpu",
-                    "fasterq-dump_ID0000012": "AresGpu",
-                    "bowtie2_ID0000013": "PrometeusGpu",
-                    "fasterq-dump_ID0000014": "AresGpu",
-                    "bowtie2_ID0000015": "PrometeusGpu",
-                    "fasterq-dump_ID0000016": "AresGpu",
-                    "bowtie2_ID0000017": "AresGpu",
-                    "fasterq-dump_ID0000018": "AresGpu",
-                    "bowtie2_ID0000019": "PrometeusGpu",
-                    "fasterq-dump_ID0000020": "AresGpu",
-                    "bowtie2_ID0000021": "AresGpu",
-                    "merge_ID0000022": "ZeusCpu"
-                },
-                "cost": 226101.15724079523,
-                "time": 4823.302848
-            }
-        ],
-        "cost": 226101.15724079523,
-        "time": 4823.302848
-    }
+    "timestamp": "2024-03-21T18:33:02.581426"
 }
