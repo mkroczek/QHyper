@@ -7,4 +7,5 @@ gurobipy
 types-tqdm
 nptyping
 pandas
+anytree
 git+https://github.com/wfcommons/wfcommons.git@main
