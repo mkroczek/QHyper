@@ -1,4 +1,5 @@
 import uuid
+from abc import ABC, abstractmethod
 from enum import Enum
 
 import networkx as nx
@@ -10,11 +11,30 @@ class Composition(Enum):
     SERIES = 1
 
 
-class CompositionNode(Node):
-    def __init__(self, left: Node, right: Node, composition: Composition, common_nodes: list[str]):
+class SPTreeNode(ABC, Node):
+    @abstractmethod
+    def get_graph_nodes(self):
+        pass
+
+
+class CompositionNode(SPTreeNode):
+    def __init__(self, left: SPTreeNode, right: SPTreeNode, composition: Composition, common_nodes: list[str]):
         super().__init__(name=uuid.uuid1(), children=[left, right])
         self.operation = composition
         self.common_nodes = common_nodes
+
+    def get_graph_nodes(self):
+        return set().union(*map(lambda c: c.get_graph_nodes(), self.children))
+
+
+class EdgeNode(SPTreeNode):
+    def __init__(self, edge):
+        self.u = edge[0]
+        self.v = edge[1]
+        super().__init__((self.u, self.v))
+
+    def get_graph_nodes(self):
+        return {self.u, self.v}
 
 
 def with_extra_functions(graph: nx.MultiDiGraph):
@@ -41,8 +61,8 @@ def with_extra_functions(graph: nx.MultiDiGraph):
         self.remove_node(w)
         self.add_edge(u, v, tree=CompositionNode(e1_tree, e2_tree, Composition.SERIES, [w]))
 
-    def get_edge_tree(self, e) -> Node:
-        return self.edges[e].get('tree', Node((e[0], e[1])))
+    def get_edge_tree(self, e) -> EdgeNode:
+        return self.edges[e].get('tree', EdgeNode(e))
 
     graph.get_sources = get_sources
     graph.get_sinks = get_sinks
@@ -90,7 +110,7 @@ def recognize_sp(graph: nx.DiGraph) -> GraphDecorator:
     graph = GraphDecorator(graph)
     sources, sinks = graph.get_sources(), graph.get_sinks()
     if len(sources) != 1 or len(sinks) != 1:
-        return False
+        return graph
     source, sink = sources[0], sinks[0]
     unsatisfied_nodes = {n for n in graph.nodes if n != sink and n != source}
     while unsatisfied_nodes:
@@ -103,12 +123,12 @@ def recognize_sp(graph: nx.DiGraph) -> GraphDecorator:
     return graph
 
 
-def is_sp_dag(graph: nx.DiGraph):
+def is_sp_dag(graph: nx.DiGraph) -> bool:
     graph = recognize_sp(graph)
     return is_trivial_sp_dag(graph)
 
 
-def get_sp_decomposition_tree(graph: nx.DiGraph):
+def get_sp_decomposition_tree(graph: nx.DiGraph) -> SPTreeNode:
     graph = recognize_sp(graph)
     if is_trivial_sp_dag(graph):
         return graph.get_edge_tree(list(graph.edges(keys=True))[0])
@@ -116,7 +136,7 @@ def get_sp_decomposition_tree(graph: nx.DiGraph):
         raise ValueError("Input graph must be SP to build decomposition tree")
 
 
-def apply_weights_on_tree(tree: Node, weights: dict):
+def apply_weights_on_tree(tree: SPTreeNode, weights: dict):
     if 'weight' in tree.__dict__:
         return
     if tree.is_leaf:

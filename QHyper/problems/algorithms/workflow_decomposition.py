@@ -3,10 +3,13 @@ from dataclasses import dataclass, field
 
 import networkx as nx
 import numpy as np
+from anytree import AnyNode
 from wfcommons.common.machine import Machine
 from wfcommons.common.task import Task, TaskType
 from wfcommons.common.workflow import Workflow as WfWorkflow
 
+from QHyper.problems.algorithms.graph_utils import get_sp_decomposition_tree, apply_weights_on_tree, CompositionNode, \
+    Composition, SPTreeNode
 from QHyper.problems.algorithms.utils import wfworkflow_to_qhyper_workflow
 from QHyper.problems.workflow_scheduling import Workflow
 
@@ -158,6 +161,52 @@ class HeftBasedAlgorithm:
 
         for subworkflow, subdeadline in zip(subworkflows, deadline_per_chunk):
             division.workflows.append(wfworkflow_to_qhyper_workflow(subworkflow, workflow.machines, subdeadline))
+
+        return division
+
+
+class SeriesParallelSplit:
+    class DivisionTreeNode(AnyNode):
+        def __init__(self, workflow: WfWorkflow, deadline: float, children=None):
+            super().__init__(children=children)
+            self.workflow = workflow
+            self.deadline = deadline
+
+    def distribute_deadline(self, tree: SPTreeNode, deadline: float):
+        tree.deadline = deadline
+        if isinstance(tree, CompositionNode):
+            if tree.operation == Composition.PARALLEL:
+                [self.distribute_deadline(child, deadline) for child in tree.children]
+            elif tree.operation == Composition.SERIES:
+                weights_sum = sum(child.weight for child in tree.children)
+                [self.distribute_deadline(child, round(child.weight / weights_sum * deadline)) for child in
+                 tree.children]
+            else:
+                raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")
+
+    def build_division_tree(self, workflow: WfWorkflow, tree: SPTreeNode, max_graph_size: int) -> DivisionTreeNode:
+        graph_nodes = tree.get_graph_nodes()
+        if len(graph_nodes) <= max_graph_size:
+            return self.DivisionTreeNode(create_subworkflow(workflow, graph_nodes, "name"), tree.deadline)
+        elif tree.is_leaf:
+            raise ValueError(f"Demanded max graph size is {max_graph_size}, \
+                    but graph containing {len(graph_nodes)} nodes can't be divided further")
+        else:
+            children_trees = [self.build_division_tree(workflow, child, max_graph_size) for child in tree.children]
+            return self.DivisionTreeNode(None, tree.deadline, children=children_trees)
+
+    def decompose(self, workflow: Workflow, max_graph_size: int) -> Division:
+        mean_times: dict = workflow.time_matrix.mean(axis=1).to_dict()
+        wf_workflow: WfWorkflow = workflow.wf_instance.workflow
+        tree: SPTreeNode = get_sp_decomposition_tree(wf_workflow)
+        apply_weights_on_tree(tree, mean_times)
+        self.distribute_deadline(tree, workflow.deadline)
+        division_tree = self.build_division_tree(wf_workflow, tree, max_graph_size)
+
+        division = Division("SeriesParallelSplitAlgorithm")
+
+        for leaf in division_tree.leaves:
+            division.workflows.append(wfworkflow_to_qhyper_workflow(leaf.workflow, workflow.machines, leaf.deadline))
 
         return division
 
