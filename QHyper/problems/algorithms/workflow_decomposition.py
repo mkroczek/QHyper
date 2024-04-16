@@ -10,6 +10,7 @@ from wfcommons.common.workflow import Workflow as WfWorkflow
 
 from QHyper.problems.algorithms.graph_utils import get_sp_decomposition_tree, apply_weights_on_tree, CompositionNode, \
     Composition, SPTreeNode
+from QHyper.problems.algorithms.spization import SpIzationAlgorithm, JavaFacadeSpIzationAlgorithm
 from QHyper.problems.algorithms.utils import wfworkflow_to_qhyper_workflow
 from QHyper.problems.workflow_scheduling import Workflow
 
@@ -195,7 +196,33 @@ class SeriesParallelSplit:
             children_trees = [self.build_division_tree(workflow, child, max_graph_size) for child in tree.children]
             return self.DivisionTreeNode(None, tree.deadline, children=children_trees)
 
+    def _get_task(self, old_workflow: WfWorkflow, name: str):
+        if name in old_workflow.tasks:
+            return old_workflow.tasks[name]
+        else:
+            return ConnectingTask(name)
+
+    def wrap_in_workflow(self, old_workflow: WfWorkflow, sp_dag: nx.DiGraph) -> WfWorkflow:
+        node_mapping: dict[str, Task] = {name: self._get_task(old_workflow, name) for name in sp_dag.nodes}
+        new_workflow = WfWorkflow(
+            name=f"SP_{old_workflow.name}"
+        )
+        for node in sp_dag.nodes:
+            new_workflow.add_task(node_mapping[node])
+        for node1, node2 in sp_dag.edges:
+            task1_name, task2_name = node_mapping[node1].name, node_mapping[node2].name
+            new_workflow.add_dependency(task1_name, task2_name)
+        return new_workflow
+
+    def create_sp_workflow(self, workflow: Workflow) -> Workflow:
+        old_workflow: WfWorkflow = workflow.wf_instance.workflow
+        spization: SpIzationAlgorithm = JavaFacadeSpIzationAlgorithm()
+        sp_dag: nx.DiGraph = spization.run(old_workflow)
+        new_workflow = self.wrap_in_workflow(old_workflow, sp_dag)
+        return wfworkflow_to_qhyper_workflow(new_workflow, workflow.machines, workflow.deadline)
+
     def decompose(self, workflow: Workflow, max_graph_size: int) -> Division:
+        workflow = self.create_sp_workflow(workflow)
         mean_times: dict = workflow.time_matrix.mean(axis=1).to_dict()
         wf_workflow: WfWorkflow = workflow.wf_instance.workflow
         tree: SPTreeNode = get_sp_decomposition_tree(wf_workflow)
