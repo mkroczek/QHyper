@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import pathlib
 import tempfile
 from copy import copy
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional, Union, Set, Tuple
 
 import matplotlib.patches as mpatches
@@ -19,8 +21,10 @@ from QHyper.solvers import Solver, SolverResult
 class WorkflowSchedule:
     cost: float
     time: float
+    deadline: float
     machine_assignment: dict[str, str]
     workflow: Workflow
+    parts: list[WorkflowSchedule] = field(default_factory=list)
 
 
 class WorkflowSchedulingSolverDecorator:
@@ -35,6 +39,7 @@ class WorkflowSchedulingSolverDecorator:
         return WorkflowSchedule(
             cost=self.problem.calculate_solution_cost(machine_assignment),
             time=self.problem.calculate_solution_timespan(machine_assignment),
+            deadline=self.problem.workflow.deadline,
             machine_assignment=machine_assignment,
             workflow=self.problem.workflow
         )

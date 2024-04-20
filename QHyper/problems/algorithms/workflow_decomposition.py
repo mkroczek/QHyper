@@ -40,6 +40,7 @@ class ConnectingTask(Task):
 @dataclass
 class Division:
     method: str
+    complete_workflow: Workflow
     workflows: list[Workflow] = field(default_factory=list)
 
 
@@ -158,7 +159,7 @@ class HeftBasedAlgorithm:
         deadline_per_chunk = self.split_deadline(deadline, split_chunks, mean_times)
         subworkflows = create_subworkflows(workflow, split_chunks)
 
-        division = Division("HeftBasedAlgorithm")
+        division = Division("HeftBasedAlgorithm", workflow)
 
         for subworkflow, subdeadline in zip(subworkflows, deadline_per_chunk):
             division.workflows.append(wfworkflow_to_qhyper_workflow(subworkflow, workflow.machines, subdeadline))
@@ -230,7 +231,7 @@ class SeriesParallelSplit:
         self.distribute_deadline(tree, workflow.deadline)
         division_tree = self.build_division_tree(wf_workflow, tree, max_graph_size)
 
-        division = Division("SeriesParallelSplitAlgorithm")
+        division = Division("SeriesParallelSplitAlgorithm", workflow)
 
         for leaf in division_tree.leaves:
             division.workflows.append(wfworkflow_to_qhyper_workflow(leaf.workflow, workflow.machines, leaf.deadline))
@@ -249,7 +250,7 @@ class SimpleSplit:
         sorted_tasks = sorted(distances_from_root, key=distances_from_root.get)
         split_chunks = np.array_split(sorted_tasks, n_parts)
 
-        division = Division("SimpleSplitAlgorithm")
+        division = Division("SimpleSplitAlgorithm", workflow)
 
         for subworkflow, subdeadline in zip(create_subworkflows(workflow, split_chunks),
                                             self.split_deadline(workflow.deadline, split_chunks)):

@@ -29,7 +29,7 @@
                 "id": "Task2",
                 "memory": 0,
                 "machine": "default_machine",
-                "runtimeInSeconds": 2,
+                "runtimeInSeconds": 3,
                 "memoryInBytes": 0
             },
             {
@@ -45,7 +45,7 @@
                 "id": "Task3",
                 "memory": 0,
                 "machine": "default_machine",
-                "runtimeInSeconds": 2,
+                "runtimeInSeconds": 4,
                 "memoryInBytes": 0
             },
             {
@@ -78,7 +78,7 @@
                 "id": "Task5",
                 "memory": 0,
                 "machine": "default_machine",
-                "runtimeInSeconds": 2,
+                "runtimeInSeconds": 5,
                 "memoryInBytes": 0
             },
             {
@@ -94,7 +94,7 @@
                 "id": "Task6",
                 "memory": 0,
                 "machine": "default_machine",
-                "runtimeInSeconds": 2,
+                "runtimeInSeconds": 1,
                 "memoryInBytes": 0
             },
             {
@@ -128,7 +128,7 @@
                 "id": "Task8",
                 "memory": 0,
                 "machine": "default_machine",
-                "runtimeInSeconds": 3,
+                "runtimeInSeconds": 4,
                 "memoryInBytes": 0
             },
             {
@@ -146,7 +146,7 @@
                 "id": "Task9",
                 "memory": 0,
                 "machine": "default_machine",
-                "runtimeInSeconds": 3,
+                "runtimeInSeconds": 6,
                 "memoryInBytes": 0
             }
         ],

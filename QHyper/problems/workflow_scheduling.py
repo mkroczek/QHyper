@@ -247,8 +247,8 @@ class WorkflowSchedulingOneHot(Problem):
 
     def calculate_solution_timespan(self, machine_assignment: dict[str, str]) -> float:
         timespan: dict[str, float] = {}
-        last_task = self.workflow.wf_instance.leaves()[0]
-        return self.calculate_partial_timespan(last_task, machine_assignment, timespan)
+        leaves = self.workflow.wf_instance.leaves()
+        return max([self.calculate_partial_timespan(leaf, machine_assignment, timespan) for leaf in leaves])
 
 
 class WorkflowSchedulingBinary(Problem):
