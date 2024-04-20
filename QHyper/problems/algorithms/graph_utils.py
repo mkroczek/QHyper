@@ -144,6 +144,11 @@ def apply_weights_on_tree(tree: SPTreeNode, weights: dict):
         tree.weight = weights[u] + weights[v]
     elif isinstance(tree, CompositionNode):
         [apply_weights_on_tree(child, weights) for child in tree.children]
-        tree.weight = sum(child.weight for child in tree.children) - sum(weights[n] for n in tree.common_nodes)
+        if tree.operation == Composition.SERIES:
+            tree.weight = sum(child.weight for child in tree.children) - sum(weights[n] for n in tree.common_nodes)
+        elif tree.operation == Composition.PARALLEL:
+            tree.weight = max(child.weight for child in tree.children)
+        else:
+            raise TypeError(f"Unable to apply weight to node with operation {tree.operation}")
     else:
         raise TypeError(f"Unable to apply weight to node of type {type(tree)}")

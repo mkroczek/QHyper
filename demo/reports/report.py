@@ -1,38 +1,29 @@
+from __future__ import annotations
+
 import datetime
 import json
 from dataclasses import dataclass, field
 
-from wfcommons.common import Workflow
-
-from QHyper.problems.algorithms.utils import WorkflowSchedule
+from QHyper.problems.algorithms.solver_utils import WorkflowSchedule
 
 
 @dataclass(frozen=True)
-class WorkflowSolution:
+class Solution:
     cost: float
     time: float
     deadline: float
     machine_assignment: dict[str, str]
-    workflow: Workflow
+    parts: list[Solution] = field(default_factory=list)
 
-
-@dataclass
-class Solution:
-    solver: str
-    total_cost: float = 0.0
-    total_time: float = 0.0
-    parts: list[WorkflowSolution] = field(default_factory=list)
-
-    def add_part(self, workflow_schedule: WorkflowSchedule):
-        self.total_cost += workflow_schedule.cost
-        self.total_time += workflow_schedule.time
-        self.parts.append(WorkflowSolution(
-            cost=workflow_schedule.cost,
-            time=workflow_schedule.time,
-            deadline=workflow_schedule.workflow.deadline,
-            machine_assignment=workflow_schedule.machine_assignment,
-            workflow=workflow_schedule.workflow.wf_instance.instance
-        ))
+    @classmethod
+    def from_workflow_schedule(cls, schedule: WorkflowSchedule):
+        return cls(
+            cost=schedule.cost,
+            time=schedule.time,
+            deadline=schedule.deadline,
+            machine_assignment=schedule.machine_assignment,
+            parts=[cls.from_workflow_schedule(part) for part in schedule.parts]
+        )
 
 
 @dataclass
@@ -40,9 +31,17 @@ class ExecutionReport:
     workflow_file: str
     machines_file: str
     deadline: int
+    solver: str
     solution: Solution
+    max_graph_size: int = None
     timestamp: str = field(default=datetime.datetime.now().isoformat())
 
     def write_json(self, file_path):
         with open(file_path, 'w') as file:
-            json.dump(obj=self.__dict__, fp=file, default=lambda o: o.__dict__, indent=4)
+            def filter_empty(d):
+                def is_empty(x):
+                    return x is None or x == {} or x == []
+
+                return {k: v for k, v in d.items() if not is_empty(v)}
+
+            json.dump(obj=filter_empty(self.__dict__), fp=file, default=lambda o: filter_empty(o.__dict__), indent=4)
