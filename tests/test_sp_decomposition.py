@@ -13,7 +13,8 @@ def test_non_sp_dag():
     division = SeriesParallelSplit().decompose(workflow, 6)
 
     # then
-    assert(division)
+    assert (len(division.workflows) == 3)
+
 
 def test_non_sp_dag_without_source_and_sink():
     # given
@@ -26,4 +27,6 @@ def test_non_sp_dag_without_source_and_sink():
     division = SeriesParallelSplit().decompose(workflow, 6)
 
     # then
-    assert(division)
+    assert (len(division.workflows) == 3)
+    assert (len(division.complete_workflow.wf_instance.roots()) == 1)
+    assert (len(division.complete_workflow.wf_instance.leaves()) == 1)
