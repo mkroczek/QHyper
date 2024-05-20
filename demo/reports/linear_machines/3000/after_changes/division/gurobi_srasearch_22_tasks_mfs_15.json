@@ -1,0 +1,80 @@
+{
+    "workflow_file": "workflows_data/workflows/srasearch_22_tasks.json",
+    "machines_file": "workflows_data/machines/linear.json",
+    "deadline": 3000,
+    "solver": "Gurobi",
+    "solution": {
+        "cost": 302274.86190719996,
+        "time": 2977.0230672,
+        "deadline": 3000,
+        "machine_assignment": {
+            "bowtie2-build_ID0000001": "Machine1",
+            "fasterq-dump_ID0000018": "Machine4",
+            "fasterq-dump_ID0000014": "Machine2",
+            "fasterq-dump_ID0000004": "Machine3",
+            "fasterq-dump_ID0000006": "Machine3",
+            "NewNode22": "Machine1",
+            "fasterq-dump_ID0000008": "Machine2",
+            "fasterq-dump_ID0000002": "Machine4",
+            "fasterq-dump_ID0000012": "Machine3",
+            "NewNode23": "Machine1",
+            "fasterq-dump_ID0000010": "Machine3",
+            "fasterq-dump_ID0000020": "Machine5",
+            "fasterq-dump_ID0000016": "Machine4",
+            "merge_ID0000022": "Machine1",
+            "bowtie2_ID0000007": "Machine3",
+            "bowtie2_ID0000003": "Machine3",
+            "bowtie2_ID0000013": "Machine3",
+            "bowtie2_ID0000009": "Machine3",
+            "bowtie2_ID0000017": "Machine4",
+            "bowtie2_ID0000005": "Machine3",
+            "bowtie2_ID0000011": "Machine3",
+            "bowtie2_ID0000019": "Machine4",
+            "bowtie2_ID0000021": "Machine5",
+            "bowtie2_ID0000015": "Machine2"
+        },
+        "parts": [
+            {
+                "cost": 278997.3531072,
+                "time": 2742.2605391999996,
+                "deadline": 2748,
+                "machine_assignment": {
+                    "bowtie2-build_ID0000001": "Machine1",
+                    "fasterq-dump_ID0000018": "Machine4",
+                    "fasterq-dump_ID0000014": "Machine2",
+                    "fasterq-dump_ID0000004": "Machine3",
+                    "fasterq-dump_ID0000006": "Machine3",
+                    "NewNode22": "Machine1",
+                    "fasterq-dump_ID0000008": "Machine2",
+                    "fasterq-dump_ID0000002": "Machine4",
+                    "fasterq-dump_ID0000012": "Machine3",
+                    "NewNode23": "Machine1",
+                    "fasterq-dump_ID0000010": "Machine3",
+                    "fasterq-dump_ID0000020": "Machine5",
+                    "fasterq-dump_ID0000016": "Machine4"
+                }
+            },
+            {
+                "cost": 23277.5088,
+                "time": 234.76252800000003,
+                "deadline": 252,
+                "machine_assignment": {
+                    "merge_ID0000022": "Machine1",
+                    "bowtie2_ID0000007": "Machine3",
+                    "bowtie2_ID0000003": "Machine3",
+                    "bowtie2_ID0000013": "Machine3",
+                    "bowtie2_ID0000009": "Machine3",
+                    "bowtie2_ID0000017": "Machine4",
+                    "bowtie2_ID0000005": "Machine3",
+                    "bowtie2_ID0000011": "Machine3",
+                    "bowtie2_ID0000019": "Machine4",
+                    "NewNode23": "Machine1",
+                    "bowtie2_ID0000021": "Machine5",
+                    "bowtie2_ID0000015": "Machine2"
+                }
+            }
+        ]
+    },
+    "max_graph_size": 15,
+    "timestamp": "2024-04-30T11:45:35.016342"
+}

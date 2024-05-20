@@ -87,6 +87,14 @@ class Workflow:
 
         return time_df, cost_df
 
+    @property
+    def critical_path_value(self):
+        mean_times = self.time_matrix.mean(axis=1).to_dict()
+
+        def path_load(p):
+            return sum([mean_times[t] for t in p])
+
+        return max(path_load(p) for p in self.paths)
 
 def calc_slack_coefficients(constant: int) -> list[int]:
     num_slack = int(math.floor(math.log2(constant)))
@@ -117,7 +125,7 @@ class WorkflowSchedulingOneHot(Problem):
             )
         ]))
         self._set_objective_function_simplified()
-        self._set_constraints()
+        self._set_constraints_simplified()
 
     def _set_objective_function(self) -> None:
         expression: Expr = cast(Expr, 0)
@@ -177,6 +185,40 @@ class WorkflowSchedulingOneHot(Problem):
             self.constraints.append(
                 Constraint(
                     Expression(expression),
+                    self.workflow.deadline,
+                    Operator.LE,
+                    MethodsForInequalities.UNBALANCED_PENALIZATION,
+                )
+            )
+
+    def _set_constraints_simplified(self) -> None:
+        self.constraints: list[Constraint] = []
+
+        # machine assignment constraint
+        for task_id in range(len(self.workflow.time_matrix.index)):
+            machine_assignment_expr_dict = {}
+            for machine_id in range(len(self.workflow.time_matrix.columns)):
+                variable = self.variables[machine_id + task_id * len(self.workflow.time_matrix.columns)]
+                machine_assignment_expr_dict[tuple([str(variable)])] = 1
+            self.constraints.append(Constraint(Expression(machine_assignment_expr_dict), 1, Operator.EQ))
+
+        # deadline constraint
+        for path in self.workflow.paths:
+            path_expr_dict = {}
+            for task_id, task_name in enumerate(self.workflow.time_matrix.index):
+                for machine_id, machine_name in enumerate(
+                        self.workflow.time_matrix.columns
+                ):
+                    if task_name in path:
+                        time = self.workflow.time_matrix[machine_name][task_name]
+                        variable = self.variables[machine_id + task_id * len(self.workflow.time_matrix.columns)]
+                        time_str = "{:.15g}".format(time)
+                        path_expr_dict[tuple([str(variable)])] = float(time_str)
+
+            # todo add constraints unbalanced penalization
+            self.constraints.append(
+                Constraint(
+                    Expression(path_expr_dict),
                     self.workflow.deadline,
                     Operator.LE,
                     MethodsForInequalities.UNBALANCED_PENALIZATION,

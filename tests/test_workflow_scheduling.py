@@ -50,6 +50,20 @@ def test_solution_timespan_no_entry_and_exit():
     assert (timespan == expected_timespan)
 
 
+def test_critical_path_value():
+    # given
+    tasks_file = "resources/workflows/complex_workflow_no_entry_and_exit.json"
+    machines_file = "resources/machines/3_machines.json"
+    deadline = 50
+    workflow: Workflow = Workflow(tasks_file, machines_file, deadline)
+
+    # when
+    cpv = workflow.critical_path_value
+
+    # then
+    assert (cpv == 22)
+
+
 def assign_random_machines(machines: list[str], tasks: list[str]):
     return {task: random.choice(machines) for task in tasks}
 

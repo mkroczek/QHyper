@@ -91,7 +91,7 @@ class Runner:
                                    stderr=subprocess.PIPE,
                                    text=True)
 
-        stdout, stderr = process.communicate(input=program_input, timeout=180)
+        stdout, stderr = process.communicate(input=program_input, timeout=600)
         if process.returncode != 0:
             raise SpIzationException(f"Execution of SpIzation algorithm failed: {stderr}")
         return stdout

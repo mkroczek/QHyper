@@ -1,0 +1,36 @@
+{
+    "workflow_file": "workflows_data/workflows/srasearch_22_tasks.json",
+    "machines_file": "workflows_data/machines/linear.json",
+    "deadline": 3000,
+    "solver": "Gurobi",
+    "solution": {
+        "cost": 286273.15691519994,
+        "time": 2981.9549760000004,
+        "deadline": 3000,
+        "machine_assignment": {
+            "bowtie2-build_ID0000001": "Machine1",
+            "fasterq-dump_ID0000002": "Machine4",
+            "bowtie2_ID0000003": "Machine3",
+            "fasterq-dump_ID0000004": "Machine2",
+            "bowtie2_ID0000005": "Machine3",
+            "fasterq-dump_ID0000006": "Machine3",
+            "bowtie2_ID0000007": "Machine2",
+            "fasterq-dump_ID0000008": "Machine2",
+            "bowtie2_ID0000009": "Machine2",
+            "fasterq-dump_ID0000010": "Machine3",
+            "bowtie2_ID0000011": "Machine2",
+            "fasterq-dump_ID0000012": "Machine3",
+            "bowtie2_ID0000013": "Machine1",
+            "fasterq-dump_ID0000014": "Machine2",
+            "bowtie2_ID0000015": "Machine1",
+            "fasterq-dump_ID0000016": "Machine4",
+            "bowtie2_ID0000017": "Machine2",
+            "fasterq-dump_ID0000018": "Machine4",
+            "bowtie2_ID0000019": "Machine1",
+            "fasterq-dump_ID0000020": "Machine5",
+            "bowtie2_ID0000021": "Machine2",
+            "merge_ID0000022": "Machine1"
+        }
+    },
+    "timestamp": "2024-04-21T20:43:55.942267"
+}

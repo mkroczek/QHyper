@@ -38,7 +38,7 @@
         "count": 5000
       },
       "price": 16.0,
-      "memory_cost_multiplier": 0.4
+      "memory_cost_multiplier": 0.0
     },
     {
       "name": "Machine5",

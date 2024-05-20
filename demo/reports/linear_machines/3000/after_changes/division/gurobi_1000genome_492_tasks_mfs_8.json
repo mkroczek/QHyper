@@ -1,0 +1,2191 @@
+{
+    "workflow_file": "workflows_data/workflows/1000genome_492_tasks.json",
+    "machines_file": "workflows_data/machines/linear.json",
+    "deadline": 2000,
+    "solver": "Gurobi",
+    "solution": {
+        "cost": 1231834.4309951998,
+        "time": 1608.8855039999999,
+        "deadline": 2000,
+        "machine_assignment": {
+            "NewNode492": "Machine1",
+            "NewNode494": "Machine1",
+            "sifting_ID0000270": "Machine1",
+            "individuals_ID0000250": "Machine3",
+            "individuals_ID0000260": "Machine3",
+            "individuals_ID0000244": "Machine3",
+            "individuals_ID0000255": "Machine3",
+            "individuals_merge_ID0000269": "Machine5",
+            "individuals_ID0000265": "Machine3",
+            "individuals_ID0000262": "Machine3",
+            "individuals_ID0000261": "Machine3",
+            "individuals_ID0000266": "Machine3",
+            "individuals_ID0000247": "Machine3",
+            "individuals_ID0000256": "Machine3",
+            "individuals_ID0000259": "Machine3",
+            "individuals_ID0000258": "Machine3",
+            "individuals_ID0000267": "Machine3",
+            "individuals_ID0000248": "Machine3",
+            "individuals_ID0000252": "Machine4",
+            "individuals_ID0000263": "Machine3",
+            "individuals_ID0000249": "Machine3",
+            "individuals_ID0000246": "Machine3",
+            "individuals_ID0000257": "Machine3",
+            "individuals_ID0000251": "Machine4",
+            "individuals_ID0000254": "Machine3",
+            "individuals_ID0000264": "Machine3",
+            "individuals_ID0000245": "Machine3",
+            "individuals_ID0000253": "Machine3",
+            "individuals_ID0000268": "Machine3",
+            "mutation_overlap_ID0000455": "Machine1",
+            "frequency_ID0000454": "Machine3",
+            "frequency_ID0000458": "Machine3",
+            "mutation_overlap_ID0000463": "Machine1",
+            "NewNode493": "Machine1",
+            "mutation_overlap_ID0000453": "Machine1",
+            "mutation_overlap_ID0000451": "Machine1",
+            "frequency_ID0000462": "Machine3",
+            "mutation_overlap_ID0000461": "Machine1",
+            "frequency_ID0000452": "Machine3",
+            "frequency_ID0000464": "Machine3",
+            "mutation_overlap_ID0000459": "Machine1",
+            "frequency_ID0000456": "Machine3",
+            "mutation_overlap_ID0000457": "Machine1",
+            "frequency_ID0000460": "Machine3",
+            "sifting_ID0000216": "Machine1",
+            "NewNode496": "Machine1",
+            "individuals_merge_ID0000215": "Machine5",
+            "individuals_ID0000196": "Machine3",
+            "individuals_ID0000212": "Machine3",
+            "individuals_ID0000204": "Machine3",
+            "individuals_ID0000197": "Machine3",
+            "individuals_ID0000213": "Machine2",
+            "individuals_ID0000195": "Machine3",
+            "individuals_ID0000208": "Machine2",
+            "individuals_ID0000194": "Machine3",
+            "individuals_ID0000214": "Machine3",
+            "individuals_ID0000206": "Machine3",
+            "individuals_ID0000199": "Machine3",
+            "individuals_ID0000190": "Machine3",
+            "individuals_ID0000192": "Machine3",
+            "individuals_ID0000200": "Machine3",
+            "individuals_ID0000193": "Machine4",
+            "individuals_ID0000201": "Machine3",
+            "individuals_ID0000207": "Machine3",
+            "individuals_ID0000211": "Machine3",
+            "individuals_ID0000198": "Machine3",
+            "individuals_ID0000209": "Machine2",
+            "individuals_ID0000202": "Machine3",
+            "individuals_ID0000210": "Machine3",
+            "individuals_ID0000191": "Machine3",
+            "individuals_ID0000205": "Machine3",
+            "individuals_ID0000203": "Machine3",
+            "frequency_ID0000426": "Machine2",
+            "frequency_ID0000424": "Machine3",
+            "mutation_overlap_ID0000433": "Machine1",
+            "mutation_overlap_ID0000423": "Machine1",
+            "frequency_ID0000430": "Machine3",
+            "frequency_ID0000436": "Machine3",
+            "mutation_overlap_ID0000425": "Machine1",
+            "mutation_overlap_ID0000427": "Machine1",
+            "frequency_ID0000434": "Machine3",
+            "frequency_ID0000432": "Machine3",
+            "mutation_overlap_ID0000431": "Machine1",
+            "frequency_ID0000428": "Machine3",
+            "mutation_overlap_ID0000429": "Machine1",
+            "mutation_overlap_ID0000435": "Machine1",
+            "sifting_ID0000243": "Machine1",
+            "NewNode495": "Machine1",
+            "individuals_merge_ID0000242": "Machine4",
+            "individuals_ID0000239": "Machine2",
+            "individuals_ID0000232": "Machine2",
+            "individuals_ID0000224": "Machine2",
+            "individuals_ID0000227": "Machine2",
+            "individuals_ID0000223": "Machine2",
+            "individuals_ID0000231": "Machine2",
+            "individuals_ID0000238": "Machine2",
+            "individuals_ID0000236": "Machine3",
+            "individuals_ID0000226": "Machine2",
+            "individuals_ID0000229": "Machine3",
+            "individuals_ID0000228": "Machine2",
+            "individuals_ID0000230": "Machine2",
+            "individuals_ID0000225": "Machine2",
+            "individuals_ID0000217": "Machine2",
+            "individuals_ID0000234": "Machine2",
+            "individuals_ID0000218": "Machine2",
+            "individuals_ID0000222": "Machine2",
+            "individuals_ID0000240": "Machine3",
+            "individuals_ID0000237": "Machine2",
+            "individuals_ID0000220": "Machine2",
+            "individuals_ID0000233": "Machine2",
+            "individuals_ID0000235": "Machine2",
+            "individuals_ID0000219": "Machine2",
+            "individuals_ID0000221": "Machine2",
+            "individuals_ID0000241": "Machine3",
+            "mutation_overlap_ID0000437": "Machine1",
+            "frequency_ID0000438": "Machine2",
+            "frequency_ID0000446": "Machine2",
+            "mutation_overlap_ID0000439": "Machine1",
+            "frequency_ID0000448": "Machine2",
+            "frequency_ID0000450": "Machine3",
+            "mutation_overlap_ID0000449": "Machine1",
+            "mutation_overlap_ID0000447": "Machine1",
+            "mutation_overlap_ID0000443": "Machine1",
+            "frequency_ID0000440": "Machine3",
+            "mutation_overlap_ID0000441": "Machine1",
+            "frequency_ID0000444": "Machine3",
+            "mutation_overlap_ID0000445": "Machine1",
+            "frequency_ID0000442": "Machine3",
+            "sifting_ID0000189": "Machine1",
+            "NewNode497": "Machine1",
+            "individuals_ID0000163": "Machine3",
+            "individuals_ID0000174": "Machine4",
+            "individuals_merge_ID0000188": "Machine4",
+            "individuals_ID0000165": "Machine3",
+            "individuals_ID0000182": "Machine2",
+            "individuals_ID0000185": "Machine2",
+            "individuals_ID0000167": "Machine3",
+            "individuals_ID0000175": "Machine4",
+            "individuals_ID0000183": "Machine3",
+            "individuals_ID0000180": "Machine2",
+            "individuals_ID0000176": "Machine3",
+            "individuals_ID0000184": "Machine3",
+            "individuals_ID0000170": "Machine4",
+            "individuals_ID0000172": "Machine3",
+            "individuals_ID0000171": "Machine4",
+            "individuals_ID0000178": "Machine3",
+            "individuals_ID0000177": "Machine3",
+            "individuals_ID0000164": "Machine2",
+            "individuals_ID0000168": "Machine3",
+            "individuals_ID0000166": "Machine3",
+            "individuals_ID0000173": "Machine3",
+            "individuals_ID0000186": "Machine2",
+            "individuals_ID0000169": "Machine3",
+            "individuals_ID0000179": "Machine3",
+            "individuals_ID0000181": "Machine2",
+            "individuals_ID0000187": "Machine3",
+            "frequency_ID0000416": "Machine3",
+            "frequency_ID0000414": "Machine3",
+            "mutation_overlap_ID0000419": "Machine1",
+            "mutation_overlap_ID0000417": "Machine1",
+            "mutation_overlap_ID0000421": "Machine1",
+            "frequency_ID0000410": "Machine3",
+            "frequency_ID0000422": "Machine3",
+            "frequency_ID0000412": "Machine3",
+            "frequency_ID0000420": "Machine3",
+            "mutation_overlap_ID0000415": "Machine1",
+            "frequency_ID0000418": "Machine3",
+            "mutation_overlap_ID0000411": "Machine1",
+            "mutation_overlap_ID0000409": "Machine1",
+            "mutation_overlap_ID0000413": "Machine1",
+            "sifting_ID0000108": "Machine1",
+            "NewNode500": "Machine1",
+            "individuals_ID0000098": "Machine2",
+            "individuals_ID0000083": "Machine2",
+            "individuals_ID0000084": "Machine2",
+            "individuals_merge_ID0000107": "Machine5",
+            "individuals_ID0000096": "Machine2",
+            "individuals_ID0000095": "Machine2",
+            "individuals_ID0000089": "Machine2",
+            "individuals_ID0000091": "Machine3",
+            "individuals_ID0000082": "Machine2",
+            "individuals_ID0000099": "Machine2",
+            "individuals_ID0000090": "Machine2",
+            "individuals_ID0000105": "Machine2",
+            "individuals_ID0000102": "Machine2",
+            "individuals_ID0000100": "Machine2",
+            "individuals_ID0000093": "Machine3",
+            "individuals_ID0000087": "Machine2",
+            "individuals_ID0000106": "Machine2",
+            "individuals_ID0000092": "Machine3",
+            "individuals_ID0000085": "Machine2",
+            "individuals_ID0000088": "Machine2",
+            "individuals_ID0000104": "Machine2",
+            "individuals_ID0000103": "Machine3",
+            "individuals_ID0000097": "Machine2",
+            "individuals_ID0000101": "Machine2",
+            "individuals_ID0000094": "Machine3",
+            "individuals_ID0000086": "Machine2",
+            "frequency_ID0000376": "Machine3",
+            "frequency_ID0000380": "Machine3",
+            "mutation_overlap_ID0000367": "Machine1",
+            "frequency_ID0000378": "Machine3",
+            "mutation_overlap_ID0000379": "Machine1",
+            "frequency_ID0000368": "Machine3",
+            "frequency_ID0000372": "Machine3",
+            "mutation_overlap_ID0000375": "Machine1",
+            "mutation_overlap_ID0000377": "Machine1",
+            "frequency_ID0000374": "Machine3",
+            "mutation_overlap_ID0000373": "Machine1",
+            "mutation_overlap_ID0000369": "Machine1",
+            "frequency_ID0000370": "Machine3",
+            "mutation_overlap_ID0000371": "Machine1",
+            "NewNode501": "Machine1",
+            "sifting_ID0000081": "Machine1",
+            "individuals_merge_ID0000080": "Machine5",
+            "individuals_ID0000072": "Machine3",
+            "individuals_ID0000061": "Machine3",
+            "individuals_ID0000056": "Machine3",
+            "individuals_ID0000071": "Machine3",
+            "individuals_ID0000064": "Machine3",
+            "individuals_ID0000074": "Machine3",
+            "individuals_ID0000075": "Machine3",
+            "individuals_ID0000076": "Machine3",
+            "individuals_ID0000065": "Machine3",
+            "individuals_ID0000077": "Machine3",
+            "individuals_ID0000057": "Machine3",
+            "individuals_ID0000055": "Machine3",
+            "individuals_ID0000060": "Machine3",
+            "individuals_ID0000069": "Machine3",
+            "individuals_ID0000059": "Machine3",
+            "individuals_ID0000079": "Machine4",
+            "individuals_ID0000068": "Machine3",
+            "individuals_ID0000062": "Machine3",
+            "individuals_ID0000067": "Machine3",
+            "individuals_ID0000058": "Machine4",
+            "individuals_ID0000070": "Machine3",
+            "individuals_ID0000073": "Machine3",
+            "individuals_ID0000066": "Machine3",
+            "individuals_ID0000078": "Machine3",
+            "individuals_ID0000063": "Machine3",
+            "mutation_overlap_ID0000359": "Machine1",
+            "frequency_ID0000362": "Machine3",
+            "frequency_ID0000356": "Machine3",
+            "mutation_overlap_ID0000363": "Machine1",
+            "mutation_overlap_ID0000353": "Machine1",
+            "frequency_ID0000366": "Machine3",
+            "mutation_overlap_ID0000355": "Machine1",
+            "frequency_ID0000354": "Machine3",
+            "mutation_overlap_ID0000357": "Machine1",
+            "frequency_ID0000360": "Machine3",
+            "frequency_ID0000364": "Machine3",
+            "mutation_overlap_ID0000361": "Machine1",
+            "mutation_overlap_ID0000365": "Machine1",
+            "frequency_ID0000358": "Machine3",
+            "NewNode505": "Machine1",
+            "sifting_ID0000297": "Machine1",
+            "individuals_ID0000275": "Machine2",
+            "individuals_ID0000291": "Machine3",
+            "individuals_ID0000279": "Machine2",
+            "individuals_merge_ID0000296": "Machine5",
+            "individuals_ID0000274": "Machine3",
+            "individuals_ID0000287": "Machine2",
+            "individuals_ID0000272": "Machine4",
+            "individuals_ID0000285": "Machine2",
+            "individuals_ID0000288": "Machine2",
+            "individuals_ID0000295": "Machine4",
+            "individuals_ID0000286": "Machine2",
+            "individuals_ID0000289": "Machine2",
+            "individuals_ID0000278": "Machine2",
+            "individuals_ID0000271": "Machine2",
+            "individuals_ID0000280": "Machine2",
+            "individuals_ID0000284": "Machine2",
+            "individuals_ID0000277": "Machine2",
+            "individuals_ID0000276": "Machine2",
+            "individuals_ID0000294": "Machine4",
+            "individuals_ID0000281": "Machine3",
+            "individuals_ID0000290": "Machine3",
+            "individuals_ID0000273": "Machine4",
+            "individuals_ID0000292": "Machine2",
+            "individuals_ID0000283": "Machine2",
+            "individuals_ID0000293": "Machine4",
+            "individuals_ID0000282": "Machine2",
+            "mutation_overlap_ID0000469": "Machine1",
+            "mutation_overlap_ID0000473": "Machine1",
+            "frequency_ID0000476": "Machine3",
+            "frequency_ID0000478": "Machine3",
+            "frequency_ID0000468": "Machine2",
+            "mutation_overlap_ID0000467": "Machine1",
+            "mutation_overlap_ID0000477": "Machine1",
+            "frequency_ID0000474": "Machine2",
+            "mutation_overlap_ID0000465": "Machine1",
+            "frequency_ID0000470": "Machine3",
+            "mutation_overlap_ID0000475": "Machine1",
+            "frequency_ID0000472": "Machine2",
+            "frequency_ID0000466": "Machine3",
+            "mutation_overlap_ID0000471": "Machine1",
+            "sifting_ID0000027": "Machine1",
+            "NewNode503": "Machine1",
+            "individuals_ID0000023": "Machine3",
+            "individuals_ID0000010": "Machine3",
+            "individuals_merge_ID0000026": "Machine5",
+            "individuals_ID0000018": "Machine3",
+            "individuals_ID0000021": "Machine3",
+            "individuals_ID0000015": "Machine2",
+            "individuals_ID0000002": "Machine3",
+            "individuals_ID0000017": "Machine2",
+            "individuals_ID0000001": "Machine3",
+            "individuals_ID0000019": "Machine2",
+            "individuals_ID0000008": "Machine3",
+            "individuals_ID0000025": "Machine3",
+            "individuals_ID0000006": "Machine3",
+            "individuals_ID0000004": "Machine3",
+            "individuals_ID0000020": "Machine3",
+            "individuals_ID0000022": "Machine3",
+            "individuals_ID0000024": "Machine3",
+            "individuals_ID0000013": "Machine3",
+            "individuals_ID0000009": "Machine3",
+            "individuals_ID0000007": "Machine3",
+            "individuals_ID0000011": "Machine3",
+            "individuals_ID0000003": "Machine3",
+            "individuals_ID0000014": "Machine3",
+            "individuals_ID0000005": "Machine3",
+            "individuals_ID0000012": "Machine3",
+            "individuals_ID0000016": "Machine2",
+            "frequency_ID0000332": "Machine3",
+            "mutation_overlap_ID0000333": "Machine1",
+            "mutation_overlap_ID0000337": "Machine1",
+            "frequency_ID0000326": "Machine3",
+            "frequency_ID0000336": "Machine3",
+            "mutation_overlap_ID0000325": "Machine1",
+            "mutation_overlap_ID0000331": "Machine1",
+            "frequency_ID0000338": "Machine3",
+            "mutation_overlap_ID0000327": "Machine1",
+            "frequency_ID0000328": "Machine3",
+            "mutation_overlap_ID0000335": "Machine1",
+            "mutation_overlap_ID0000329": "Machine1",
+            "frequency_ID0000334": "Machine3",
+            "frequency_ID0000330": "Machine3",
+            "NewNode499": "Machine1",
+            "sifting_ID0000135": "Machine1",
+            "individuals_ID0000110": "Machine2",
+            "individuals_ID0000109": "Machine2",
+            "individuals_merge_ID0000134": "Machine5",
+            "individuals_ID0000131": "Machine2",
+            "individuals_ID0000114": "Machine2",
+            "individuals_ID0000122": "Machine2",
+            "individuals_ID0000124": "Machine2",
+            "individuals_ID0000132": "Machine2",
+            "individuals_ID0000129": "Machine2",
+            "individuals_ID0000111": "Machine2",
+            "individuals_ID0000130": "Machine2",
+            "individuals_ID0000117": "Machine2",
+            "individuals_ID0000116": "Machine2",
+            "individuals_ID0000115": "Machine2",
+            "individuals_ID0000125": "Machine2",
+            "individuals_ID0000113": "Machine2",
+            "individuals_ID0000127": "Machine3",
+            "individuals_ID0000120": "Machine2",
+            "individuals_ID0000123": "Machine2",
+            "individuals_ID0000118": "Machine2",
+            "individuals_ID0000121": "Machine2",
+            "individuals_ID0000133": "Machine2",
+            "individuals_ID0000126": "Machine2",
+            "individuals_ID0000128": "Machine2",
+            "individuals_ID0000119": "Machine2",
+            "individuals_ID0000112": "Machine2",
+            "frequency_ID0000386": "Machine2",
+            "mutation_overlap_ID0000391": "Machine1",
+            "mutation_overlap_ID0000385": "Machine1",
+            "frequency_ID0000388": "Machine2",
+            "frequency_ID0000390": "Machine2",
+            "frequency_ID0000382": "Machine2",
+            "mutation_overlap_ID0000389": "Machine1",
+            "frequency_ID0000394": "Machine2",
+            "mutation_overlap_ID0000381": "Machine1",
+            "mutation_overlap_ID0000393": "Machine1",
+            "mutation_overlap_ID0000387": "Machine1",
+            "frequency_ID0000392": "Machine2",
+            "mutation_overlap_ID0000383": "Machine1",
+            "frequency_ID0000384": "Machine2",
+            "sifting_ID0000162": "Machine1",
+            "NewNode498": "Machine1",
+            "individuals_ID0000137": "Machine2",
+            "individuals_ID0000157": "Machine3",
+            "individuals_ID0000139": "Machine2",
+            "individuals_merge_ID0000161": "Machine5",
+            "individuals_ID0000142": "Machine2",
+            "individuals_ID0000144": "Machine2",
+            "individuals_ID0000149": "Machine2",
+            "individuals_ID0000154": "Machine2",
+            "individuals_ID0000146": "Machine2",
+            "individuals_ID0000151": "Machine3",
+            "individuals_ID0000147": "Machine2",
+            "individuals_ID0000136": "Machine2",
+            "individuals_ID0000160": "Machine3",
+            "individuals_ID0000143": "Machine2",
+            "individuals_ID0000155": "Machine2",
+            "individuals_ID0000141": "Machine2",
+            "individuals_ID0000152": "Machine2",
+            "individuals_ID0000159": "Machine2",
+            "individuals_ID0000156": "Machine2",
+            "individuals_ID0000153": "Machine2",
+            "individuals_ID0000140": "Machine2",
+            "individuals_ID0000138": "Machine2",
+            "individuals_ID0000150": "Machine3",
+            "individuals_ID0000148": "Machine2",
+            "individuals_ID0000158": "Machine2",
+            "individuals_ID0000145": "Machine2",
+            "mutation_overlap_ID0000405": "Machine1",
+            "mutation_overlap_ID0000403": "Machine1",
+            "mutation_overlap_ID0000399": "Machine1",
+            "mutation_overlap_ID0000401": "Machine1",
+            "mutation_overlap_ID0000397": "Machine1",
+            "frequency_ID0000402": "Machine2",
+            "frequency_ID0000406": "Machine2",
+            "frequency_ID0000408": "Machine2",
+            "frequency_ID0000400": "Machine2",
+            "frequency_ID0000404": "Machine2",
+            "mutation_overlap_ID0000395": "Machine1",
+            "mutation_overlap_ID0000407": "Machine1",
+            "frequency_ID0000396": "Machine2",
+            "frequency_ID0000398": "Machine2",
+            "NewNode504": "Machine1",
+            "sifting_ID0000324": "Machine1",
+            "individuals_ID0000319": "Machine3",
+            "individuals_ID0000318": "Machine3",
+            "individuals_ID0000307": "Machine3",
+            "individuals_ID0000310": "Machine3",
+            "individuals_merge_ID0000323": "Machine5",
+            "individuals_ID0000312": "Machine3",
+            "individuals_ID0000315": "Machine3",
+            "individuals_ID0000309": "Machine3",
+            "individuals_ID0000321": "Machine3",
+            "individuals_ID0000304": "Machine3",
+            "individuals_ID0000306": "Machine3",
+            "individuals_ID0000317": "Machine3",
+            "individuals_ID0000308": "Machine3",
+            "individuals_ID0000316": "Machine3",
+            "individuals_ID0000299": "Machine2",
+            "individuals_ID0000305": "Machine3",
+            "individuals_ID0000298": "Machine2",
+            "individuals_ID0000303": "Machine3",
+            "individuals_ID0000314": "Machine3",
+            "individuals_ID0000313": "Machine3",
+            "individuals_ID0000301": "Machine3",
+            "individuals_ID0000300": "Machine3",
+            "individuals_ID0000302": "Machine3",
+            "individuals_ID0000320": "Machine3",
+            "individuals_ID0000311": "Machine3",
+            "individuals_ID0000322": "Machine3",
+            "frequency_ID0000480": "Machine3",
+            "mutation_overlap_ID0000487": "Machine1",
+            "mutation_overlap_ID0000491": "Machine1",
+            "mutation_overlap_ID0000483": "Machine1",
+            "frequency_ID0000482": "Machine2",
+            "frequency_ID0000486": "Machine3",
+            "mutation_overlap_ID0000479": "Machine1",
+            "mutation_overlap_ID0000489": "Machine1",
+            "frequency_ID0000492": "Machine3",
+            "frequency_ID0000490": "Machine3",
+            "mutation_overlap_ID0000481": "Machine1",
+            "frequency_ID0000484": "Machine2",
+            "frequency_ID0000488": "Machine2",
+            "mutation_overlap_ID0000485": "Machine1",
+            "sifting_ID0000054": "Machine1",
+            "NewNode502": "Machine1",
+            "individuals_ID0000039": "Machine3",
+            "individuals_merge_ID0000053": "Machine5",
+            "individuals_ID0000050": "Machine3",
+            "individuals_ID0000038": "Machine3",
+            "individuals_ID0000052": "Machine3",
+            "individuals_ID0000032": "Machine4",
+            "individuals_ID0000048": "Machine4",
+            "individuals_ID0000029": "Machine3",
+            "individuals_ID0000043": "Machine3",
+            "individuals_ID0000028": "Machine3",
+            "individuals_ID0000040": "Machine3",
+            "individuals_ID0000042": "Machine3",
+            "individuals_ID0000035": "Machine3",
+            "individuals_ID0000033": "Machine3",
+            "individuals_ID0000045": "Machine3",
+            "individuals_ID0000034": "Machine4",
+            "individuals_ID0000031": "Machine4",
+            "individuals_ID0000049": "Machine4",
+            "individuals_ID0000046": "Machine3",
+            "individuals_ID0000036": "Machine4",
+            "individuals_ID0000030": "Machine4",
+            "individuals_ID0000037": "Machine3",
+            "individuals_ID0000051": "Machine3",
+            "individuals_ID0000041": "Machine3",
+            "individuals_ID0000044": "Machine4",
+            "individuals_ID0000047": "Machine3",
+            "mutation_overlap_ID0000351": "Machine1",
+            "frequency_ID0000342": "Machine3",
+            "mutation_overlap_ID0000347": "Machine1",
+            "mutation_overlap_ID0000349": "Machine1",
+            "mutation_overlap_ID0000341": "Machine1",
+            "frequency_ID0000350": "Machine3",
+            "mutation_overlap_ID0000343": "Machine1",
+            "frequency_ID0000346": "Machine2",
+            "mutation_overlap_ID0000345": "Machine1",
+            "frequency_ID0000344": "Machine2",
+            "frequency_ID0000352": "Machine3",
+            "frequency_ID0000348": "Machine2",
+            "frequency_ID0000340": "Machine3",
+            "mutation_overlap_ID0000339": "Machine1"
+        },
+        "parts": [
+            {
+                "cost": 104.3223552,
+                "time": 104.3223552,
+                "deadline": 1155,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "NewNode494": "Machine1",
+                    "sifting_ID0000270": "Machine1"
+                }
+            },
+            {
+                "cost": 20151.034905599998,
+                "time": 676.21552896,
+                "deadline": 734,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000250": "Machine3",
+                    "individuals_ID0000260": "Machine3",
+                    "individuals_ID0000244": "Machine3",
+                    "individuals_ID0000255": "Machine3",
+                    "individuals_merge_ID0000269": "Machine5"
+                }
+            },
+            {
+                "cost": 23727.150259199996,
+                "time": 696.78579456,
+                "deadline": 734,
+                "machine_assignment": {
+                    "individuals_ID0000265": "Machine3",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000262": "Machine3",
+                    "individuals_ID0000261": "Machine3",
+                    "individuals_ID0000266": "Machine3",
+                    "individuals_merge_ID0000269": "Machine5",
+                    "individuals_ID0000247": "Machine3"
+                }
+            },
+            {
+                "cost": 19931.176627200002,
+                "time": 665.85805056,
+                "deadline": 734,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000256": "Machine3",
+                    "individuals_ID0000259": "Machine3",
+                    "individuals_ID0000258": "Machine3",
+                    "individuals_merge_ID0000269": "Machine5",
+                    "individuals_ID0000267": "Machine3"
+                }
+            },
+            {
+                "cost": 19629.7486848,
+                "time": 730.5564191999999,
+                "deadline": 734,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000248": "Machine3",
+                    "individuals_ID0000252": "Machine4",
+                    "individuals_ID0000263": "Machine3",
+                    "individuals_ID0000249": "Machine3",
+                    "individuals_merge_ID0000269": "Machine4"
+                }
+            },
+            {
+                "cost": 19015.769664,
+                "time": 713.9109023999999,
+                "deadline": 734,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000246": "Machine3",
+                    "individuals_ID0000257": "Machine3",
+                    "individuals_ID0000251": "Machine4",
+                    "individuals_ID0000254": "Machine3",
+                    "individuals_merge_ID0000269": "Machine4"
+                }
+            },
+            {
+                "cost": 20565.737971199997,
+                "time": 704.3760537599999,
+                "deadline": 734,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000264": "Machine3",
+                    "individuals_ID0000245": "Machine3",
+                    "individuals_ID0000253": "Machine3",
+                    "individuals_ID0000268": "Machine3",
+                    "individuals_merge_ID0000269": "Machine5"
+                }
+            },
+            {
+                "cost": 6305.4254592,
+                "time": 394.0890912,
+                "deadline": 421,
+                "machine_assignment": {
+                    "NewNode494": "Machine1",
+                    "individuals_merge_ID0000269": "Machine4"
+                }
+            },
+            {
+                "cost": 12217.0293504,
+                "time": 665.1936768,
+                "deadline": 845,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000455": "Machine1",
+                    "frequency_ID0000454": "Machine3",
+                    "frequency_ID0000458": "Machine3",
+                    "mutation_overlap_ID0000463": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000453": "Machine1",
+                    "NewNode494": "Machine1",
+                    "mutation_overlap_ID0000451": "Machine1"
+                }
+            },
+            {
+                "cost": 17545.960281599997,
+                "time": 668.9918207999999,
+                "deadline": 845,
+                "machine_assignment": {
+                    "frequency_ID0000462": "Machine3",
+                    "mutation_overlap_ID0000461": "Machine1",
+                    "NewNode493": "Machine1",
+                    "NewNode494": "Machine1",
+                    "frequency_ID0000452": "Machine3",
+                    "frequency_ID0000464": "Machine3"
+                }
+            },
+            {
+                "cost": 11881.8423936,
+                "time": 655.3486464,
+                "deadline": 845,
+                "machine_assignment": {
+                    "NewNode493": "Machine1",
+                    "NewNode494": "Machine1",
+                    "mutation_overlap_ID0000459": "Machine1",
+                    "frequency_ID0000456": "Machine3",
+                    "mutation_overlap_ID0000457": "Machine1",
+                    "frequency_ID0000460": "Machine3"
+                }
+            },
+            {
+                "cost": 49.409279999999995,
+                "time": 49.409279999999995,
+                "deadline": 1071,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "sifting_ID0000216": "Machine1",
+                    "NewNode496": "Machine1"
+                }
+            },
+            {
+                "cost": 16120.843776,
+                "time": 555.7196390400001,
+                "deadline": 628,
+                "machine_assignment": {
+                    "individuals_merge_ID0000215": "Machine5",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000196": "Machine3",
+                    "individuals_ID0000212": "Machine3",
+                    "individuals_ID0000204": "Machine3",
+                    "individuals_ID0000197": "Machine3"
+                }
+            },
+            {
+                "cost": 16431.238655999998,
+                "time": 624.67259904,
+                "deadline": 628,
+                "machine_assignment": {
+                    "individuals_merge_ID0000215": "Machine5",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000213": "Machine2",
+                    "individuals_ID0000195": "Machine3",
+                    "individuals_ID0000208": "Machine2",
+                    "individuals_ID0000194": "Machine3",
+                    "individuals_ID0000214": "Machine3"
+                }
+            },
+            {
+                "cost": 16353.467136,
+                "time": 571.02203904,
+                "deadline": 628,
+                "machine_assignment": {
+                    "individuals_merge_ID0000215": "Machine5",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000206": "Machine3",
+                    "individuals_ID0000199": "Machine3",
+                    "individuals_ID0000190": "Machine3",
+                    "individuals_ID0000192": "Machine3"
+                }
+            },
+            {
+                "cost": 15057.6196608,
+                "time": 627.4601088000001,
+                "deadline": 628,
+                "machine_assignment": {
+                    "individuals_merge_ID0000215": "Machine4",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000200": "Machine3",
+                    "individuals_ID0000193": "Machine4",
+                    "individuals_ID0000201": "Machine3",
+                    "individuals_ID0000207": "Machine3"
+                }
+            },
+            {
+                "cost": 15379.347456000001,
+                "time": 624.78779904,
+                "deadline": 628,
+                "machine_assignment": {
+                    "individuals_merge_ID0000215": "Machine5",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000211": "Machine3",
+                    "individuals_ID0000198": "Machine3",
+                    "individuals_ID0000209": "Machine2",
+                    "individuals_ID0000202": "Machine3"
+                }
+            },
+            {
+                "cost": 16176.243456,
+                "time": 562.78907904,
+                "deadline": 628,
+                "machine_assignment": {
+                    "individuals_merge_ID0000215": "Machine5",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000210": "Machine3",
+                    "individuals_ID0000191": "Machine3",
+                    "individuals_ID0000205": "Machine3",
+                    "individuals_ID0000203": "Machine3"
+                }
+            },
+            {
+                "cost": 6718.5911808,
+                "time": 419.9119488,
+                "deadline": 443,
+                "machine_assignment": {
+                    "individuals_merge_ID0000215": "Machine4",
+                    "NewNode496": "Machine1"
+                }
+            },
+            {
+                "cost": 20993.524416,
+                "time": 719.1302400000001,
+                "deadline": 929,
+                "machine_assignment": {
+                    "frequency_ID0000426": "Machine2",
+                    "frequency_ID0000424": "Machine3",
+                    "mutation_overlap_ID0000433": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000423": "Machine1",
+                    "NewNode496": "Machine1",
+                    "frequency_ID0000430": "Machine3",
+                    "frequency_ID0000436": "Machine3"
+                }
+            },
+            {
+                "cost": 12792.872448,
+                "time": 681.3146879999999,
+                "deadline": 929,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000425": "Machine1",
+                    "mutation_overlap_ID0000427": "Machine1",
+                    "frequency_ID0000434": "Machine3",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000432": "Machine3",
+                    "NewNode496": "Machine1"
+                }
+            },
+            {
+                "cost": 6426.170265600001,
+                "time": 689.8574976000001,
+                "deadline": 929,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000431": "Machine1",
+                    "frequency_ID0000428": "Machine3",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000429": "Machine1",
+                    "mutation_overlap_ID0000435": "Machine1",
+                    "NewNode496": "Machine1"
+                }
+            },
+            {
+                "cost": 115.30368,
+                "time": 115.30368,
+                "deadline": 1047,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "sifting_ID0000243": "Machine1",
+                    "NewNode495": "Machine1"
+                }
+            },
+            {
+                "cost": 8308.81152,
+                "time": 689.6140800000001,
+                "deadline": 694,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000242": "Machine3",
+                    "individuals_ID0000239": "Machine2",
+                    "individuals_ID0000232": "Machine2",
+                    "individuals_ID0000224": "Machine2",
+                    "individuals_ID0000227": "Machine2"
+                }
+            },
+            {
+                "cost": 10423.10016,
+                "time": 692.26944,
+                "deadline": 694,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000223": "Machine2",
+                    "individuals_merge_ID0000242": "Machine3",
+                    "individuals_ID0000231": "Machine2",
+                    "individuals_ID0000238": "Machine2",
+                    "individuals_ID0000236": "Machine3",
+                    "individuals_ID0000226": "Machine2"
+                }
+            },
+            {
+                "cost": 11538.4351104,
+                "time": 635.3216256000001,
+                "deadline": 694,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000229": "Machine3",
+                    "individuals_merge_ID0000242": "Machine4",
+                    "individuals_ID0000228": "Machine2",
+                    "individuals_ID0000230": "Machine2",
+                    "individuals_ID0000225": "Machine2"
+                }
+            },
+            {
+                "cost": 8390.304,
+                "time": 689.41824,
+                "deadline": 694,
+                "machine_assignment": {
+                    "individuals_ID0000217": "Machine2",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000234": "Machine2",
+                    "individuals_merge_ID0000242": "Machine3",
+                    "individuals_ID0000218": "Machine2",
+                    "individuals_ID0000222": "Machine2"
+                }
+            },
+            {
+                "cost": 11392.184217600001,
+                "time": 622.7625599999999,
+                "deadline": 694,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000240": "Machine3",
+                    "individuals_merge_ID0000242": "Machine4",
+                    "individuals_ID0000237": "Machine2",
+                    "individuals_ID0000220": "Machine2",
+                    "individuals_ID0000233": "Machine2"
+                }
+            },
+            {
+                "cost": 11429.439667199998,
+                "time": 628.70112,
+                "deadline": 694,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000235": "Machine2",
+                    "individuals_ID0000219": "Machine2",
+                    "individuals_merge_ID0000242": "Machine4",
+                    "individuals_ID0000221": "Machine2",
+                    "individuals_ID0000241": "Machine3"
+                }
+            },
+            {
+                "cost": 4451.0976,
+                "time": 278.1936,
+                "deadline": 353,
+                "machine_assignment": {
+                    "individuals_merge_ID0000242": "Machine4",
+                    "NewNode495": "Machine1"
+                }
+            },
+            {
+                "cost": 12981.5963136,
+                "time": 649.7117184,
+                "deadline": 953,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000437": "Machine1",
+                    "frequency_ID0000438": "Machine2",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000446": "Machine2",
+                    "mutation_overlap_ID0000439": "Machine1",
+                    "frequency_ID0000448": "Machine2",
+                    "NewNode495": "Machine1",
+                    "frequency_ID0000450": "Machine3"
+                }
+            },
+            {
+                "cost": 5983.8901632,
+                "time": 649.4283647999999,
+                "deadline": 953,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000449": "Machine1",
+                    "mutation_overlap_ID0000447": "Machine1",
+                    "NewNode493": "Machine1",
+                    "NewNode495": "Machine1",
+                    "mutation_overlap_ID0000443": "Machine1",
+                    "frequency_ID0000440": "Machine3"
+                }
+            },
+            {
+                "cost": 12234.933619200001,
+                "time": 662.1611904,
+                "deadline": 953,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000441": "Machine1",
+                    "frequency_ID0000444": "Machine3",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000445": "Machine1",
+                    "frequency_ID0000442": "Machine3",
+                    "NewNode495": "Machine1"
+                }
+            },
+            {
+                "cost": 35.424,
+                "time": 35.424,
+                "deadline": 1240,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "sifting_ID0000189": "Machine1",
+                    "NewNode497": "Machine1"
+                }
+            },
+            {
+                "cost": 18724.9729536,
+                "time": 773.576896,
+                "deadline": 780,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000163": "Machine3",
+                    "individuals_ID0000174": "Machine4",
+                    "individuals_merge_ID0000188": "Machine4",
+                    "individuals_ID0000165": "Machine3",
+                    "individuals_ID0000182": "Machine2"
+                }
+            },
+            {
+                "cost": 20263.6435584,
+                "time": 769.2890496,
+                "deadline": 780,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000185": "Machine2",
+                    "individuals_ID0000167": "Machine3",
+                    "individuals_ID0000175": "Machine4",
+                    "individuals_merge_ID0000188": "Machine4",
+                    "individuals_ID0000183": "Machine3",
+                    "individuals_ID0000180": "Machine2"
+                }
+            },
+            {
+                "cost": 20509.189152,
+                "time": 776.8896447999999,
+                "deadline": 780,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000176": "Machine3",
+                    "individuals_ID0000184": "Machine3",
+                    "individuals_merge_ID0000188": "Machine4",
+                    "individuals_ID0000170": "Machine4",
+                    "individuals_ID0000172": "Machine3"
+                }
+            },
+            {
+                "cost": 18723.962976000003,
+                "time": 773.4606592,
+                "deadline": 780,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000171": "Machine4",
+                    "individuals_merge_ID0000188": "Machine4",
+                    "individuals_ID0000178": "Machine3",
+                    "individuals_ID0000177": "Machine3",
+                    "individuals_ID0000164": "Machine2"
+                }
+            },
+            {
+                "cost": 17477.254944,
+                "time": 773.4606592,
+                "deadline": 780,
+                "machine_assignment": {
+                    "individuals_ID0000168": "Machine3",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000166": "Machine3",
+                    "individuals_ID0000173": "Machine3",
+                    "individuals_merge_ID0000188": "Machine4",
+                    "individuals_ID0000186": "Machine2"
+                }
+            },
+            {
+                "cost": 17428.3088832,
+                "time": 772.9957119999999,
+                "deadline": 780,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000169": "Machine3",
+                    "individuals_ID0000179": "Machine3",
+                    "individuals_ID0000181": "Machine2",
+                    "individuals_merge_ID0000188": "Machine4",
+                    "individuals_ID0000187": "Machine3"
+                }
+            },
+            {
+                "cost": 6734.217830399999,
+                "time": 420.88861439999994,
+                "deadline": 460,
+                "machine_assignment": {
+                    "individuals_merge_ID0000188": "Machine4",
+                    "NewNode497": "Machine1"
+                }
+            },
+            {
+                "cost": 15377.23008,
+                "time": 583.09248,
+                "deadline": 760,
+                "machine_assignment": {
+                    "frequency_ID0000416": "Machine3",
+                    "frequency_ID0000414": "Machine3",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000419": "Machine1",
+                    "mutation_overlap_ID0000417": "Machine1",
+                    "NewNode497": "Machine1",
+                    "mutation_overlap_ID0000421": "Machine1",
+                    "frequency_ID0000410": "Machine3"
+                }
+            },
+            {
+                "cost": 14353.608960000001,
+                "time": 530.23488,
+                "deadline": 760,
+                "machine_assignment": {
+                    "frequency_ID0000422": "Machine3",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000412": "Machine3",
+                    "NewNode497": "Machine1",
+                    "frequency_ID0000420": "Machine3",
+                    "mutation_overlap_ID0000415": "Machine1"
+                }
+            },
+            {
+                "cost": 5230.484467199999,
+                "time": 513.3312,
+                "deadline": 760,
+                "machine_assignment": {
+                    "frequency_ID0000418": "Machine3",
+                    "mutation_overlap_ID0000411": "Machine1",
+                    "mutation_overlap_ID0000409": "Machine1",
+                    "NewNode493": "Machine1",
+                    "NewNode497": "Machine1",
+                    "mutation_overlap_ID0000413": "Machine1"
+                }
+            },
+            {
+                "cost": 113.1846912,
+                "time": 113.1846912,
+                "deadline": 1147,
+                "machine_assignment": {
+                    "sifting_ID0000108": "Machine1",
+                    "NewNode492": "Machine1",
+                    "NewNode500": "Machine1"
+                }
+            },
+            {
+                "cost": 13492.815552,
+                "time": 657.5398732799999,
+                "deadline": 711,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000098": "Machine2",
+                    "individuals_ID0000083": "Machine2",
+                    "individuals_ID0000084": "Machine2",
+                    "individuals_merge_ID0000107": "Machine5",
+                    "individuals_ID0000096": "Machine2"
+                }
+            },
+            {
+                "cost": 16736.8512384,
+                "time": 691.76044288,
+                "deadline": 711,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000095": "Machine2",
+                    "individuals_ID0000089": "Machine2",
+                    "individuals_merge_ID0000107": "Machine5",
+                    "individuals_ID0000091": "Machine3",
+                    "individuals_ID0000082": "Machine2",
+                    "individuals_ID0000099": "Machine2"
+                }
+            },
+            {
+                "cost": 13558.663872,
+                "time": 660.6272332799999,
+                "deadline": 711,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000090": "Machine2",
+                    "individuals_merge_ID0000107": "Machine5",
+                    "individuals_ID0000105": "Machine2",
+                    "individuals_ID0000102": "Machine2",
+                    "individuals_ID0000100": "Machine2"
+                }
+            },
+            {
+                "cost": 17198.8951104,
+                "time": 682.6035660800001,
+                "deadline": 711,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000093": "Machine3",
+                    "individuals_ID0000087": "Machine2",
+                    "individuals_merge_ID0000107": "Machine5",
+                    "individuals_ID0000106": "Machine2",
+                    "individuals_ID0000092": "Machine3"
+                }
+            },
+            {
+                "cost": 14650.759871999999,
+                "time": 658.39235328,
+                "deadline": 711,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000085": "Machine2",
+                    "individuals_ID0000088": "Machine2",
+                    "individuals_ID0000104": "Machine2",
+                    "individuals_ID0000103": "Machine3",
+                    "individuals_merge_ID0000107": "Machine5"
+                }
+            },
+            {
+                "cost": 15434.389152,
+                "time": 698.08243328,
+                "deadline": 711,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000097": "Machine2",
+                    "individuals_ID0000101": "Machine2",
+                    "individuals_merge_ID0000107": "Machine5",
+                    "individuals_ID0000094": "Machine3",
+                    "individuals_ID0000086": "Machine2"
+                }
+            },
+            {
+                "cost": 6796.941465599999,
+                "time": 424.80884159999994,
+                "deadline": 436,
+                "machine_assignment": {
+                    "individuals_merge_ID0000107": "Machine4",
+                    "NewNode500": "Machine1"
+                }
+            },
+            {
+                "cost": 24797.3768064,
+                "time": 683.8528128,
+                "deadline": 853,
+                "machine_assignment": {
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000376": "Machine3",
+                    "frequency_ID0000380": "Machine3",
+                    "mutation_overlap_ID0000367": "Machine1",
+                    "frequency_ID0000378": "Machine3",
+                    "mutation_overlap_ID0000379": "Machine1",
+                    "NewNode500": "Machine1",
+                    "frequency_ID0000368": "Machine3"
+                }
+            },
+            {
+                "cost": 12389.021222399999,
+                "time": 676.1962368,
+                "deadline": 853,
+                "machine_assignment": {
+                    "frequency_ID0000372": "Machine3",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000375": "Machine1",
+                    "mutation_overlap_ID0000377": "Machine1",
+                    "frequency_ID0000374": "Machine3",
+                    "NewNode500": "Machine1"
+                }
+            },
+            {
+                "cost": 6913.291276800001,
+                "time": 686.9938176,
+                "deadline": 853,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000373": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000369": "Machine1",
+                    "frequency_ID0000370": "Machine3",
+                    "mutation_overlap_ID0000371": "Machine1",
+                    "NewNode500": "Machine1"
+                }
+            },
+            {
+                "cost": 246.75840000000005,
+                "time": 246.75840000000005,
+                "deadline": 1247,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "NewNode501": "Machine1",
+                    "sifting_ID0000081": "Machine1"
+                }
+            },
+            {
+                "cost": 19140.3487872,
+                "time": 777.541872,
+                "deadline": 781,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000080": "Machine4",
+                    "individuals_ID0000072": "Machine3",
+                    "individuals_ID0000061": "Machine3",
+                    "individuals_ID0000056": "Machine3",
+                    "individuals_ID0000071": "Machine3"
+                }
+            },
+            {
+                "cost": 24675.7457664,
+                "time": 716.1973247999999,
+                "deadline": 781,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000064": "Machine3",
+                    "individuals_ID0000074": "Machine3",
+                    "individuals_merge_ID0000080": "Machine5",
+                    "individuals_ID0000075": "Machine3",
+                    "individuals_ID0000076": "Machine3",
+                    "individuals_ID0000065": "Machine3"
+                }
+            },
+            {
+                "cost": 21280.2592896,
+                "time": 712.1158272,
+                "deadline": 781,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000080": "Machine5",
+                    "individuals_ID0000077": "Machine3",
+                    "individuals_ID0000057": "Machine3",
+                    "individuals_ID0000055": "Machine3",
+                    "individuals_ID0000060": "Machine3"
+                }
+            },
+            {
+                "cost": 20372.792256,
+                "time": 767.5581792,
+                "deadline": 781,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000080": "Machine4",
+                    "individuals_ID0000069": "Machine3",
+                    "individuals_ID0000059": "Machine3",
+                    "individuals_ID0000079": "Machine4",
+                    "individuals_ID0000068": "Machine3"
+                }
+            },
+            {
+                "cost": 20549.062310400004,
+                "time": 776.2697952,
+                "deadline": 781,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000080": "Machine4",
+                    "individuals_ID0000062": "Machine3",
+                    "individuals_ID0000067": "Machine3",
+                    "individuals_ID0000058": "Machine4",
+                    "individuals_ID0000070": "Machine3"
+                }
+            },
+            {
+                "cost": 21612.7596672,
+                "time": 720.7430400000001,
+                "deadline": 781,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000073": "Machine3",
+                    "individuals_ID0000066": "Machine3",
+                    "individuals_merge_ID0000080": "Machine5",
+                    "individuals_ID0000078": "Machine3",
+                    "individuals_ID0000063": "Machine3"
+                }
+            },
+            {
+                "cost": 6765.398784,
+                "time": 422.837424,
+                "deadline": 466,
+                "machine_assignment": {
+                    "NewNode501": "Machine1",
+                    "individuals_merge_ID0000080": "Machine4"
+                }
+            },
+            {
+                "cost": 15542.095679999999,
+                "time": 570.9153023999999,
+                "deadline": 753,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000359": "Machine1",
+                    "frequency_ID0000362": "Machine3",
+                    "frequency_ID0000356": "Machine3",
+                    "mutation_overlap_ID0000363": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000353": "Machine1",
+                    "frequency_ID0000366": "Machine3",
+                    "NewNode501": "Machine1"
+                }
+            },
+            {
+                "cost": 10147.248115199998,
+                "time": 552.0089856,
+                "deadline": 753,
+                "machine_assignment": {
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000355": "Machine1",
+                    "frequency_ID0000354": "Machine3",
+                    "mutation_overlap_ID0000357": "Machine1",
+                    "frequency_ID0000360": "Machine3",
+                    "NewNode501": "Machine1"
+                }
+            },
+            {
+                "cost": 10136.2877568,
+                "time": 552.8711040000001,
+                "deadline": 753,
+                "machine_assignment": {
+                    "NewNode501": "Machine1",
+                    "frequency_ID0000364": "Machine3",
+                    "mutation_overlap_ID0000361": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000365": "Machine1",
+                    "frequency_ID0000358": "Machine3"
+                }
+            },
+            {
+                "cost": 30.0957696,
+                "time": 30.0957696,
+                "deadline": 1151,
+                "machine_assignment": {
+                    "NewNode505": "Machine1",
+                    "NewNode492": "Machine1",
+                    "sifting_ID0000297": "Machine1"
+                }
+            },
+            {
+                "cost": 17414.557459199998,
+                "time": 722.15875712,
+                "deadline": 725,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000275": "Machine2",
+                    "individuals_ID0000291": "Machine3",
+                    "individuals_ID0000279": "Machine2",
+                    "individuals_merge_ID0000296": "Machine5",
+                    "individuals_ID0000274": "Machine3"
+                }
+            },
+            {
+                "cost": 21692.7245952,
+                "time": 663.92439552,
+                "deadline": 725,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000287": "Machine2",
+                    "individuals_ID0000272": "Machine4",
+                    "individuals_ID0000285": "Machine2",
+                    "individuals_ID0000288": "Machine2",
+                    "individuals_ID0000295": "Machine4",
+                    "individuals_merge_ID0000296": "Machine5"
+                }
+            },
+            {
+                "cost": 13640.845248000001,
+                "time": 675.39831552,
+                "deadline": 725,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000286": "Machine2",
+                    "individuals_ID0000289": "Machine2",
+                    "individuals_merge_ID0000296": "Machine5",
+                    "individuals_ID0000278": "Machine2",
+                    "individuals_ID0000271": "Machine2"
+                }
+            },
+            {
+                "cost": 13744.640448,
+                "time": 679.67223552,
+                "deadline": 725,
+                "machine_assignment": {
+                    "individuals_ID0000280": "Machine2",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000284": "Machine2",
+                    "individuals_ID0000277": "Machine2",
+                    "individuals_merge_ID0000296": "Machine5",
+                    "individuals_ID0000276": "Machine2"
+                }
+            },
+            {
+                "cost": 20130.2997504,
+                "time": 717.2749200000001,
+                "deadline": 725,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000294": "Machine4",
+                    "individuals_ID0000281": "Machine3",
+                    "individuals_ID0000290": "Machine3",
+                    "individuals_merge_ID0000296": "Machine4",
+                    "individuals_ID0000273": "Machine4"
+                }
+            },
+            {
+                "cost": 17094.2822016,
+                "time": 672.77175552,
+                "deadline": 725,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000292": "Machine2",
+                    "individuals_ID0000283": "Machine2",
+                    "individuals_ID0000293": "Machine4",
+                    "individuals_ID0000282": "Machine2",
+                    "individuals_merge_ID0000296": "Machine5"
+                }
+            },
+            {
+                "cost": 6746.8783104,
+                "time": 421.6798944,
+                "deadline": 426,
+                "machine_assignment": {
+                    "individuals_merge_ID0000296": "Machine4",
+                    "NewNode505": "Machine1"
+                }
+            },
+            {
+                "cost": 14731.1278848,
+                "time": 701.1072384000001,
+                "deadline": 849,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000469": "Machine1",
+                    "mutation_overlap_ID0000473": "Machine1",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000476": "Machine3",
+                    "NewNode505": "Machine1",
+                    "frequency_ID0000478": "Machine3",
+                    "frequency_ID0000468": "Machine2",
+                    "mutation_overlap_ID0000467": "Machine1"
+                }
+            },
+            {
+                "cost": 8326.504512,
+                "time": 685.685568,
+                "deadline": 849,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000477": "Machine1",
+                    "frequency_ID0000474": "Machine2",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000465": "Machine1",
+                    "NewNode505": "Machine1",
+                    "frequency_ID0000470": "Machine3"
+                }
+            },
+            {
+                "cost": 8550.4148352,
+                "time": 706.0508543999999,
+                "deadline": 849,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000475": "Machine1",
+                    "frequency_ID0000472": "Machine2",
+                    "NewNode493": "Machine1",
+                    "NewNode505": "Machine1",
+                    "frequency_ID0000466": "Machine3",
+                    "mutation_overlap_ID0000471": "Machine1"
+                }
+            },
+            {
+                "cost": 74.73024000000001,
+                "time": 74.73024000000001,
+                "deadline": 1189,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "sifting_ID0000027": "Machine1",
+                    "NewNode503": "Machine1"
+                }
+            },
+            {
+                "cost": 20496.99744,
+                "time": 713.69657856,
+                "deadline": 728,
+                "machine_assignment": {
+                    "individuals_ID0000023": "Machine3",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000010": "Machine3",
+                    "individuals_merge_ID0000026": "Machine5",
+                    "individuals_ID0000018": "Machine3",
+                    "individuals_ID0000021": "Machine3"
+                }
+            },
+            {
+                "cost": 19122.6811392,
+                "time": 727.28096256,
+                "deadline": 728,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000015": "Machine2",
+                    "individuals_merge_ID0000026": "Machine5",
+                    "individuals_ID0000002": "Machine3",
+                    "individuals_ID0000017": "Machine2",
+                    "individuals_ID0000001": "Machine3",
+                    "individuals_ID0000019": "Machine2"
+                }
+            },
+            {
+                "cost": 21285.052185599998,
+                "time": 714.26931456,
+                "deadline": 728,
+                "machine_assignment": {
+                    "individuals_ID0000008": "Machine3",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000025": "Machine3",
+                    "individuals_merge_ID0000026": "Machine5",
+                    "individuals_ID0000006": "Machine3",
+                    "individuals_ID0000004": "Machine3"
+                }
+            },
+            {
+                "cost": 20598.658790399997,
+                "time": 707.41456896,
+                "deadline": 728,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000026": "Machine5",
+                    "individuals_ID0000020": "Machine3",
+                    "individuals_ID0000022": "Machine3",
+                    "individuals_ID0000024": "Machine3",
+                    "individuals_ID0000013": "Machine3"
+                }
+            },
+            {
+                "cost": 20256.7249152,
+                "time": 701.47017216,
+                "deadline": 728,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000026": "Machine5",
+                    "individuals_ID0000009": "Machine3",
+                    "individuals_ID0000007": "Machine3",
+                    "individuals_ID0000011": "Machine3",
+                    "individuals_ID0000003": "Machine3"
+                }
+            },
+            {
+                "cost": 18568.7974656,
+                "time": 727.12874496,
+                "deadline": 728,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000026": "Machine5",
+                    "individuals_ID0000014": "Machine3",
+                    "individuals_ID0000005": "Machine3",
+                    "individuals_ID0000012": "Machine3",
+                    "individuals_ID0000016": "Machine2"
+                }
+            },
+            {
+                "cost": 9255.896063999999,
+                "time": 370.23584256,
+                "deadline": 461,
+                "machine_assignment": {
+                    "NewNode503": "Machine1",
+                    "individuals_merge_ID0000026": "Machine5"
+                }
+            },
+            {
+                "cost": 17952.0361344,
+                "time": 664.7837184,
+                "deadline": 811,
+                "machine_assignment": {
+                    "frequency_ID0000332": "Machine3",
+                    "mutation_overlap_ID0000333": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000337": "Machine1",
+                    "frequency_ID0000326": "Machine3",
+                    "frequency_ID0000336": "Machine3",
+                    "NewNode503": "Machine1",
+                    "mutation_overlap_ID0000325": "Machine1"
+                }
+            },
+            {
+                "cost": 11674.3913856,
+                "time": 641.8139904000001,
+                "deadline": 811,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000331": "Machine1",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000338": "Machine3",
+                    "mutation_overlap_ID0000327": "Machine1",
+                    "NewNode503": "Machine1",
+                    "frequency_ID0000328": "Machine3"
+                }
+            },
+            {
+                "cost": 12555.542707200002,
+                "time": 664.0723200000001,
+                "deadline": 811,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000335": "Machine1",
+                    "mutation_overlap_ID0000329": "Machine1",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000334": "Machine3",
+                    "frequency_ID0000330": "Machine3",
+                    "NewNode503": "Machine1"
+                }
+            },
+            {
+                "cost": 23.616,
+                "time": 23.616,
+                "deadline": 1198,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "NewNode499": "Machine1",
+                    "sifting_ID0000135": "Machine1"
+                }
+            },
+            {
+                "cost": 13229.921779200002,
+                "time": 802.5118464000001,
+                "deadline": 815,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000110": "Machine2",
+                    "individuals_ID0000109": "Machine2",
+                    "individuals_merge_ID0000134": "Machine5",
+                    "individuals_ID0000131": "Machine2",
+                    "individuals_ID0000114": "Machine2"
+                }
+            },
+            {
+                "cost": 13616.701094400001,
+                "time": 785.8124928,
+                "deadline": 815,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000122": "Machine2",
+                    "individuals_ID0000124": "Machine2",
+                    "individuals_ID0000132": "Machine2",
+                    "individuals_ID0000129": "Machine2",
+                    "individuals_merge_ID0000134": "Machine5",
+                    "individuals_ID0000111": "Machine2"
+                }
+            },
+            {
+                "cost": 14091.363033600002,
+                "time": 802.453728,
+                "deadline": 815,
+                "machine_assignment": {
+                    "individuals_ID0000130": "Machine2",
+                    "NewNode492": "Machine1",
+                    "individuals_merge_ID0000134": "Machine5",
+                    "individuals_ID0000117": "Machine2",
+                    "individuals_ID0000116": "Machine2",
+                    "individuals_ID0000115": "Machine2"
+                }
+            },
+            {
+                "cost": 14784.898656000001,
+                "time": 784.9794624,
+                "deadline": 815,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000125": "Machine2",
+                    "individuals_ID0000113": "Machine2",
+                    "individuals_merge_ID0000134": "Machine5",
+                    "individuals_ID0000127": "Machine3",
+                    "individuals_ID0000120": "Machine2"
+                }
+            },
+            {
+                "cost": 12925.631078400002,
+                "time": 770.7113952000001,
+                "deadline": 815,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000123": "Machine2",
+                    "individuals_merge_ID0000134": "Machine5",
+                    "individuals_ID0000118": "Machine2",
+                    "individuals_ID0000121": "Machine2",
+                    "individuals_ID0000133": "Machine2"
+                }
+            },
+            {
+                "cost": 13455.8557056,
+                "time": 805.4177664,
+                "deadline": 815,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000126": "Machine2",
+                    "individuals_ID0000128": "Machine2",
+                    "individuals_merge_ID0000134": "Machine5",
+                    "individuals_ID0000119": "Machine2",
+                    "individuals_ID0000112": "Machine2"
+                }
+            },
+            {
+                "cost": 3207.1679999999997,
+                "time": 356.352,
+                "deadline": 383,
+                "machine_assignment": {
+                    "NewNode499": "Machine1",
+                    "individuals_merge_ID0000134": "Machine3"
+                }
+            },
+            {
+                "cost": 11620.1088,
+                "time": 761.2991999999998,
+                "deadline": 802,
+                "machine_assignment": {
+                    "NewNode499": "Machine1",
+                    "frequency_ID0000386": "Machine2",
+                    "mutation_overlap_ID0000391": "Machine1",
+                    "mutation_overlap_ID0000385": "Machine1",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000388": "Machine2",
+                    "frequency_ID0000390": "Machine2",
+                    "frequency_ID0000382": "Machine2"
+                }
+            },
+            {
+                "cost": 2809.9929599999996,
+                "time": 660.3897599999999,
+                "deadline": 802,
+                "machine_assignment": {
+                    "NewNode499": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000389": "Machine1",
+                    "frequency_ID0000394": "Machine2",
+                    "mutation_overlap_ID0000381": "Machine1",
+                    "mutation_overlap_ID0000393": "Machine1"
+                }
+            },
+            {
+                "cost": 5821.597440000001,
+                "time": 760.2796800000001,
+                "deadline": 802,
+                "machine_assignment": {
+                    "NewNode499": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000387": "Machine1",
+                    "frequency_ID0000392": "Machine2",
+                    "mutation_overlap_ID0000383": "Machine1",
+                    "frequency_ID0000384": "Machine2"
+                }
+            },
+            {
+                "cost": 151.11187200000003,
+                "time": 151.11187200000003,
+                "deadline": 961,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "sifting_ID0000162": "Machine1",
+                    "NewNode498": "Machine1"
+                }
+            },
+            {
+                "cost": 10251.083519999998,
+                "time": 579.6432,
+                "deadline": 611,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000137": "Machine2",
+                    "individuals_ID0000157": "Machine3",
+                    "individuals_ID0000139": "Machine2",
+                    "individuals_merge_ID0000161": "Machine4",
+                    "individuals_ID0000142": "Machine2"
+                }
+            },
+            {
+                "cost": 11580.318720000001,
+                "time": 580.0752,
+                "deadline": 611,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000144": "Machine2",
+                    "individuals_ID0000149": "Machine2",
+                    "individuals_ID0000154": "Machine2",
+                    "individuals_ID0000146": "Machine2",
+                    "individuals_merge_ID0000161": "Machine4",
+                    "individuals_ID0000151": "Machine3"
+                }
+            },
+            {
+                "cost": 10366.755840000002,
+                "time": 583.1279999999999,
+                "deadline": 611,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000147": "Machine2",
+                    "individuals_ID0000136": "Machine2",
+                    "individuals_merge_ID0000161": "Machine4",
+                    "individuals_ID0000160": "Machine3",
+                    "individuals_ID0000143": "Machine2"
+                }
+            },
+            {
+                "cost": 10925.92512,
+                "time": 606.7180800000001,
+                "deadline": 611,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000155": "Machine2",
+                    "individuals_ID0000141": "Machine2",
+                    "individuals_merge_ID0000161": "Machine5",
+                    "individuals_ID0000152": "Machine2",
+                    "individuals_ID0000159": "Machine2"
+                }
+            },
+            {
+                "cost": 10929.864959999999,
+                "time": 606.43008,
+                "deadline": 611,
+                "machine_assignment": {
+                    "individuals_ID0000156": "Machine2",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000153": "Machine2",
+                    "individuals_ID0000140": "Machine2",
+                    "individuals_ID0000138": "Machine2",
+                    "individuals_merge_ID0000161": "Machine5"
+                }
+            },
+            {
+                "cost": 10261.04832,
+                "time": 595.46592,
+                "deadline": 611,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000150": "Machine3",
+                    "individuals_merge_ID0000161": "Machine4",
+                    "individuals_ID0000148": "Machine2",
+                    "individuals_ID0000158": "Machine2",
+                    "individuals_ID0000145": "Machine2"
+                }
+            },
+            {
+                "cost": 4252.9536,
+                "time": 265.8096,
+                "deadline": 350,
+                "machine_assignment": {
+                    "individuals_merge_ID0000161": "Machine4",
+                    "NewNode498": "Machine1"
+                }
+            },
+            {
+                "cost": 4766.0196096,
+                "time": 987.4631808,
+                "deadline": 1039,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000405": "Machine1",
+                    "mutation_overlap_ID0000403": "Machine1",
+                    "mutation_overlap_ID0000399": "Machine1",
+                    "mutation_overlap_ID0000401": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000397": "Machine1",
+                    "NewNode498": "Machine1",
+                    "frequency_ID0000402": "Machine2"
+                }
+            },
+            {
+                "cost": 15878.086732799999,
+                "time": 1002.1674239999999,
+                "deadline": 1039,
+                "machine_assignment": {
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000406": "Machine2",
+                    "frequency_ID0000408": "Machine2",
+                    "frequency_ID0000400": "Machine2",
+                    "frequency_ID0000404": "Machine2",
+                    "NewNode498": "Machine1"
+                }
+            },
+            {
+                "cost": 8022.9823488,
+                "time": 992.03904,
+                "deadline": 1039,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000395": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000407": "Machine1",
+                    "NewNode498": "Machine1",
+                    "frequency_ID0000396": "Machine2",
+                    "frequency_ID0000398": "Machine2"
+                }
+            },
+            {
+                "cost": 42.048,
+                "time": 42.048,
+                "deadline": 1154,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "NewNode504": "Machine1",
+                    "sifting_ID0000324": "Machine1"
+                }
+            },
+            {
+                "cost": 17908.1223552,
+                "time": 725.2073664,
+                "deadline": 726,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000319": "Machine3",
+                    "individuals_ID0000318": "Machine3",
+                    "individuals_ID0000307": "Machine3",
+                    "individuals_ID0000310": "Machine3",
+                    "individuals_merge_ID0000323": "Machine4"
+                }
+            },
+            {
+                "cost": 20911.369075199997,
+                "time": 720.5953344,
+                "deadline": 726,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000312": "Machine3",
+                    "individuals_ID0000315": "Machine3",
+                    "individuals_ID0000309": "Machine3",
+                    "individuals_ID0000321": "Machine3",
+                    "individuals_ID0000304": "Machine3",
+                    "individuals_merge_ID0000323": "Machine4"
+                }
+            },
+            {
+                "cost": 17992.0613376,
+                "time": 721.6805184,
+                "deadline": 726,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000306": "Machine3",
+                    "individuals_ID0000317": "Machine3",
+                    "individuals_ID0000308": "Machine3",
+                    "individuals_ID0000316": "Machine3",
+                    "individuals_merge_ID0000323": "Machine4"
+                }
+            },
+            {
+                "cost": 14356.063756799998,
+                "time": 704.0040767999999,
+                "deadline": 726,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000299": "Machine2",
+                    "individuals_ID0000305": "Machine3",
+                    "individuals_ID0000298": "Machine2",
+                    "individuals_ID0000303": "Machine3",
+                    "individuals_merge_ID0000323": "Machine4"
+                }
+            },
+            {
+                "cost": 19739.515046399996,
+                "time": 658.07486976,
+                "deadline": 726,
+                "machine_assignment": {
+                    "individuals_ID0000314": "Machine3",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000313": "Machine3",
+                    "individuals_ID0000301": "Machine3",
+                    "individuals_merge_ID0000323": "Machine5",
+                    "individuals_ID0000300": "Machine3"
+                }
+            },
+            {
+                "cost": 17862.598886399996,
+                "time": 718.5877439999999,
+                "deadline": 726,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000302": "Machine3",
+                    "individuals_ID0000320": "Machine3",
+                    "individuals_ID0000311": "Machine3",
+                    "individuals_ID0000322": "Machine3",
+                    "individuals_merge_ID0000323": "Machine4"
+                }
+            },
+            {
+                "cost": 6103.2195071999995,
+                "time": 381.45121919999997,
+                "deadline": 428,
+                "machine_assignment": {
+                    "NewNode504": "Machine1",
+                    "individuals_merge_ID0000323": "Machine4"
+                }
+            },
+            {
+                "cost": 13971.4209792,
+                "time": 631.004352,
+                "deadline": 846,
+                "machine_assignment": {
+                    "frequency_ID0000480": "Machine3",
+                    "mutation_overlap_ID0000487": "Machine1",
+                    "mutation_overlap_ID0000491": "Machine1",
+                    "NewNode493": "Machine1",
+                    "mutation_overlap_ID0000483": "Machine1",
+                    "frequency_ID0000482": "Machine2",
+                    "NewNode504": "Machine1",
+                    "frequency_ID0000486": "Machine3"
+                }
+            },
+            {
+                "cost": 11275.000128,
+                "time": 629.7563904,
+                "deadline": 846,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000479": "Machine1",
+                    "mutation_overlap_ID0000489": "Machine1",
+                    "frequency_ID0000492": "Machine3",
+                    "NewNode493": "Machine1",
+                    "NewNode504": "Machine1",
+                    "frequency_ID0000490": "Machine3"
+                }
+            },
+            {
+                "cost": 4499.776627200001,
+                "time": 567.2044800000001,
+                "deadline": 846,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000481": "Machine1",
+                    "frequency_ID0000484": "Machine2",
+                    "NewNode493": "Machine1",
+                    "NewNode504": "Machine1",
+                    "frequency_ID0000488": "Machine2",
+                    "mutation_overlap_ID0000485": "Machine1"
+                }
+            },
+            {
+                "cost": 19.05408,
+                "time": 19.05408,
+                "deadline": 1211,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "sifting_ID0000054": "Machine1",
+                    "NewNode502": "Machine1"
+                }
+            },
+            {
+                "cost": 22240.5943296,
+                "time": 749.9701657600001,
+                "deadline": 752,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000039": "Machine3",
+                    "individuals_merge_ID0000053": "Machine5",
+                    "individuals_ID0000050": "Machine3",
+                    "individuals_ID0000038": "Machine3",
+                    "individuals_ID0000052": "Machine3"
+                }
+            },
+            {
+                "cost": 29004.181248,
+                "time": 750.26075776,
+                "deadline": 752,
+                "machine_assignment": {
+                    "individuals_ID0000032": "Machine4",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000048": "Machine4",
+                    "individuals_ID0000029": "Machine3",
+                    "individuals_ID0000043": "Machine3",
+                    "individuals_merge_ID0000053": "Machine5",
+                    "individuals_ID0000028": "Machine3"
+                }
+            },
+            {
+                "cost": 22316.032012800002,
+                "time": 739.44427776,
+                "deadline": 752,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000040": "Machine3",
+                    "individuals_ID0000042": "Machine3",
+                    "individuals_merge_ID0000053": "Machine5",
+                    "individuals_ID0000035": "Machine3",
+                    "individuals_ID0000033": "Machine3"
+                }
+            },
+            {
+                "cost": 27036.815289600003,
+                "time": 743.6481753600001,
+                "deadline": 752,
+                "machine_assignment": {
+                    "individuals_ID0000045": "Machine3",
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000034": "Machine4",
+                    "individuals_ID0000031": "Machine4",
+                    "individuals_ID0000049": "Machine4",
+                    "individuals_merge_ID0000053": "Machine5"
+                }
+            },
+            {
+                "cost": 25496.7939264,
+                "time": 741.36218496,
+                "deadline": 752,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000046": "Machine3",
+                    "individuals_ID0000036": "Machine4",
+                    "individuals_merge_ID0000053": "Machine5",
+                    "individuals_ID0000030": "Machine4",
+                    "individuals_ID0000037": "Machine3"
+                }
+            },
+            {
+                "cost": 24182.504428800003,
+                "time": 749.0983897600001,
+                "deadline": 752,
+                "machine_assignment": {
+                    "NewNode492": "Machine1",
+                    "individuals_ID0000051": "Machine3",
+                    "individuals_ID0000041": "Machine3",
+                    "individuals_ID0000044": "Machine4",
+                    "individuals_merge_ID0000053": "Machine5",
+                    "individuals_ID0000047": "Machine3"
+                }
+            },
+            {
+                "cost": 9760.597824,
+                "time": 390.42391296000005,
+                "deadline": 459,
+                "machine_assignment": {
+                    "individuals_merge_ID0000053": "Machine5",
+                    "NewNode502": "Machine1"
+                }
+            },
+            {
+                "cost": 12686.0360832,
+                "time": 691.4671872,
+                "deadline": 789,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000351": "Machine1",
+                    "NewNode493": "Machine1",
+                    "NewNode502": "Machine1",
+                    "frequency_ID0000342": "Machine3",
+                    "mutation_overlap_ID0000347": "Machine1",
+                    "mutation_overlap_ID0000349": "Machine1",
+                    "mutation_overlap_ID0000341": "Machine1",
+                    "frequency_ID0000350": "Machine3"
+                }
+            },
+            {
+                "cost": 5410.79424,
+                "time": 639.5270399999999,
+                "deadline": 789,
+                "machine_assignment": {
+                    "mutation_overlap_ID0000343": "Machine1",
+                    "frequency_ID0000346": "Machine2",
+                    "mutation_overlap_ID0000345": "Machine1",
+                    "NewNode493": "Machine1",
+                    "NewNode502": "Machine1",
+                    "frequency_ID0000344": "Machine2"
+                }
+            },
+            {
+                "cost": 14949.2843136,
+                "time": 694.0113408,
+                "deadline": 789,
+                "machine_assignment": {
+                    "frequency_ID0000352": "Machine3",
+                    "frequency_ID0000348": "Machine2",
+                    "NewNode493": "Machine1",
+                    "frequency_ID0000340": "Machine3",
+                    "NewNode502": "Machine1",
+                    "mutation_overlap_ID0000339": "Machine1"
+                }
+            }
+        ]
+    },
+    "max_graph_size": 8,
+    "timestamp": "2024-05-01T11:30:25.940428"
+}
