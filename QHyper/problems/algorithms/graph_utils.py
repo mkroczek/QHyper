@@ -137,11 +137,10 @@ def get_sp_decomposition_tree(graph: nx.DiGraph) -> SPTreeNode:
 
 
 def apply_weights_on_tree(tree: SPTreeNode, weights: dict):
-    if 'weight' in tree.__dict__:
-        return
+    # if 'weight' in tree.__dict__:
+    #     return
     if tree.is_leaf:
-        u, v = tree.name
-        tree.weight = weights[u] + weights[v]
+        tree.weight = sum([weights[node] for node in tree.get_graph_nodes()])
     elif isinstance(tree, CompositionNode):
         [apply_weights_on_tree(child, weights) for child in tree.children]
         if tree.operation == Composition.SERIES:
