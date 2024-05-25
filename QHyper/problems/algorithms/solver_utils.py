@@ -56,17 +56,23 @@ class DecomposedWorkflowSchedulingSolver:
                     final_assignment[task] = self.pick_faster_machine(task, final_assignment[task], machine)
         return final_assignment
 
+    def verify_deadline_is_not_exceeded(self, time, deadline):
+        assert(time <= deadline, "Scheduling result exceeds the deadline!")
+
     def solve(self) -> WorkflowSchedule:
         partial_schedules = [s.solve() for s in self.solvers]
         machine_assignments = map(lambda s: s.machine_assignment, partial_schedules)
         merged_machine_assignment = self.merge_machine_assignments(machine_assignments)
         merged_workflow = self.division.complete_workflow
         problem: WorkflowSchedulingOneHot = WorkflowSchedulingOneHot(merged_workflow)
+        time = problem.calculate_solution_timespan(merged_machine_assignment)
+        deadline = merged_workflow.deadline
+        self.verify_deadline_is_not_exceeded(time, deadline)
 
         return WorkflowSchedule(
             cost=problem.calculate_solution_cost(merged_machine_assignment),
-            time=problem.calculate_solution_timespan(merged_machine_assignment),
-            deadline=merged_workflow.deadline,
+            time=time,
+            deadline=deadline,
             machine_assignment=merged_machine_assignment,
             workflow=merged_workflow,
             parts=partial_schedules
