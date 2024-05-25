@@ -10,7 +10,7 @@ from wfcommons.common.task import Task, TaskType
 from wfcommons.common.workflow import Workflow as WfWorkflow
 
 from QHyper.problems.algorithms.graph_utils import get_sp_decomposition_tree, apply_weights_on_tree, CompositionNode, \
-    Composition, SPTreeNode
+    Composition, SPTreeNode, EdgeNode
 from QHyper.problems.algorithms.spization import SpIzationAlgorithm, JavaFacadeSpIzationAlgorithm
 from QHyper.problems.algorithms.utils import wfworkflow_to_qhyper_workflow
 from QHyper.problems.workflow_scheduling import Workflow
@@ -103,6 +103,18 @@ def create_subworkflow(parent_workflow: WfWorkflow, tasks: list, name: str) -> W
         for parent in filter(lambda p: p in tasks, parent_workflow.tasks_parents[task]):
             subworkflow.add_dependency(parent, task)
     return subworkflow
+
+
+def verify_common_series_nodes_have_zero_weight(tree: SPTreeNode, subgraph_size_limit: int):
+    if isinstance(tree, CompositionNode) and len(tree.get_graph_nodes()) > subgraph_size_limit:
+        if tree.operation == Composition.PARALLEL:
+            [verify_common_series_nodes_have_zero_weight(child, subgraph_size_limit) for child in tree.children]
+        elif tree.operation == Composition.SERIES:
+            weights_sum = sum(child.weight for child in tree.children)
+            assert weights_sum == tree.weight
+            [verify_common_series_nodes_have_zero_weight(child, subgraph_size_limit) for child in tree.children]
+        else:
+            raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")
 
 
 class HeftBasedAlgorithm:
@@ -239,6 +251,7 @@ class SeriesParallelSplit:
 
         return division
 
+
 class SeriesParallelSplitEnhanced:
     class DivisionTreeNode(AnyNode):
         def __init__(self, workflow: WfWorkflow, deadline: float, children=None):
@@ -247,7 +260,7 @@ class SeriesParallelSplitEnhanced:
             self.deadline = deadline
 
     class PrunedNode(SPTreeNode):
-        def __init__(self, to_override:SPTreeNode):
+        def __init__(self, to_override: SPTreeNode):
             self.nodes: set[str] = to_override.get_graph_nodes()
             self.weight = to_override.weight
             super().__init__(to_override.name)
@@ -260,7 +273,8 @@ class SeriesParallelSplitEnhanced:
             self.nodes.add(new_node)
             self.weight -= old_node_weight
 
-    def modify_series_nodes(self, tree: SPTreeNode, override_nodes:dict[str,str], workflow: nx.DiGraph, weights:dict[str,float]):
+    def modify_series_nodes(self, tree: SPTreeNode, override_nodes: dict[str, str], workflow: nx.DiGraph,
+                            weights: dict[str, float]):
         if tree.is_leaf:
             if isinstance(tree, self.PrunedNode):
                 for node in filter(lambda n: n in tree.get_graph_nodes(), override_nodes):
@@ -381,7 +395,128 @@ class SeriesParallelSplitEnhanced:
         division = Division("SeriesParallelSplitEnhancedAlgorithm", workflow)
 
         for leaf in tree.leaves:
-            division.workflows.append(wfworkflow_to_qhyper_workflow(create_subworkflow(wf_workflow, leaf.get_graph_nodes(), "name"), workflow.machines, leaf.deadline))
+            division.workflows.append(
+                wfworkflow_to_qhyper_workflow(create_subworkflow(wf_workflow, leaf.get_graph_nodes(), "name"),
+                                              workflow.machines, leaf.deadline))
+
+        return division
+
+
+class SeriesParallelSplitFinal:
+    class DivisionTreeNode(AnyNode):
+        def __init__(self, workflow: WfWorkflow, deadline: float, children=None):
+            super().__init__(children=children)
+            self.workflow = workflow
+            self.deadline = deadline
+
+    def modify_series_nodes(self, tree: SPTreeNode, override_nodes: dict[str, str], workflow: nx.DiGraph,
+                            weights: dict[str, float], max_subgraph_size: int) -> SPTreeNode:
+        if tree.is_leaf and isinstance(tree, EdgeNode):
+            u, v = tree.edge[:2]
+            new_u, new_v = override_nodes.get(u, u), override_nodes.get(v, v)
+            return EdgeNode(edge=(new_u, new_v))
+        elif isinstance(tree, CompositionNode) and tree.operation == Composition.PARALLEL:
+            left = self.modify_series_nodes(tree.left_child, override_nodes, workflow, weights, max_subgraph_size)
+            right = self.modify_series_nodes(tree.right_child, override_nodes, workflow, weights, max_subgraph_size)
+            common_nodes = [override_nodes.get(node, node) for node in tree.common_nodes]
+            return CompositionNode(left, right, Composition.PARALLEL, common_nodes)
+        elif isinstance(tree, CompositionNode) and tree.operation == Composition.SERIES:
+            common_node = tree.common_nodes[0]
+            if weights[common_node] > 0 and len(tree.get_graph_nodes()) > max_subgraph_size:
+                common_node_substitute = common_node + "_substitute"
+                self.add_substitue(workflow, common_node, common_node_substitute)
+
+                left = self.modify_series_nodes(tree.left_child, override_nodes, workflow, weights, max_subgraph_size)
+                right_override_nodes = override_nodes.copy()
+                right_override_nodes[common_node] = common_node_substitute
+                right = self.modify_series_nodes(tree.right_child, right_override_nodes, workflow, weights,
+                                                 max_subgraph_size)
+
+                return CompositionNode(left, right, composition=Composition.SERIES, common_nodes=[])
+            else:
+                left = self.modify_series_nodes(tree.left_child, override_nodes, workflow, weights, max_subgraph_size)
+                right = self.modify_series_nodes(tree.right_child, override_nodes, workflow, weights, max_subgraph_size)
+                return CompositionNode(left, right, composition=Composition.SERIES, common_nodes=tree.common_nodes)
+        else:
+            raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")
+
+    def add_substitue(self, graph: nx.DiGraph, common_node, common_node_substitute):
+        graph.add_node(common_node_substitute)
+        out_edges = list(graph.out_edges(common_node))
+        for (src, dst) in out_edges:
+            graph.add_edge(common_node_substitute, dst)
+        graph.remove_edges_from(out_edges)
+        graph.add_edge(common_node, common_node_substitute)
+
+    def distribute_deadline(self, tree: SPTreeNode, deadline: float):
+        tree.deadline = deadline
+        if isinstance(tree, CompositionNode):
+            if tree.operation == Composition.PARALLEL:
+                [self.distribute_deadline(child, deadline) for child in tree.children]
+            elif tree.operation == Composition.SERIES:
+                weights_sum = sum(child.weight for child in tree.children)
+                [self.distribute_deadline(child, round(child.weight / weights_sum * deadline)) for child in
+                 tree.children]
+            else:
+                raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")
+
+    def build_division_tree(self, workflow: WfWorkflow, tree: SPTreeNode, max_graph_size: int) -> DivisionTreeNode:
+        graph_nodes = tree.get_graph_nodes()
+        if len(graph_nodes) <= max_graph_size:
+            return self.DivisionTreeNode(create_subworkflow(workflow, graph_nodes, "name"), tree.deadline)
+        elif tree.is_leaf:
+            raise ValueError(f"Demanded max graph size is {max_graph_size}, \
+                    but graph containing {len(graph_nodes)} nodes can't be divided further")
+        else:
+            children_trees = [self.build_division_tree(workflow, child, max_graph_size) for child in tree.children]
+            return self.DivisionTreeNode(None, tree.deadline, children=children_trees)
+
+    def _get_task(self, old_workflow: WfWorkflow, name: str):
+        if name in old_workflow.tasks:
+            return old_workflow.tasks[name]
+        else:
+            return ConnectingTask(name)
+
+    def wrap_in_workflow(self, old_workflow: WfWorkflow, sp_dag: nx.DiGraph) -> WfWorkflow:
+        node_mapping: dict[str, Task] = {name: self._get_task(old_workflow, name) for name in sp_dag.nodes}
+        new_workflow = WfWorkflow(
+            name=f"SP_{old_workflow.name}"
+        )
+        for node in sp_dag.nodes:
+            new_workflow.add_task(node_mapping[node])
+        for node1, node2 in sp_dag.edges:
+            task1_name, task2_name = node_mapping[node1].name, node_mapping[node2].name
+            new_workflow.add_dependency(task1_name, task2_name)
+        return new_workflow
+
+    def create_sp_workflow(self, workflow: Workflow) -> Workflow:
+        old_workflow: WfWorkflow = workflow.wf_instance.workflow
+        spization: SpIzationAlgorithm = JavaFacadeSpIzationAlgorithm()
+        sp_dag: nx.DiGraph = spization.run(old_workflow)
+        new_workflow = self.wrap_in_workflow(old_workflow, sp_dag)
+        return wfworkflow_to_qhyper_workflow(new_workflow, workflow.machines, workflow.deadline)
+
+    def decompose(self, workflow: Workflow, max_graph_size: int) -> Division:
+        workflow = self.create_sp_workflow(workflow)
+        weights: dict = workflow.time_matrix.mean(axis=1).to_dict()
+        wf_workflow: WfWorkflow = workflow.wf_instance.workflow
+        tree: SPTreeNode = get_sp_decomposition_tree(wf_workflow)
+
+        workflow_with_substitutes: nx.DiGraph = copy.deepcopy(wf_workflow)
+        tree: SPTreeNode = self.modify_series_nodes(tree, {}, workflow_with_substitutes, weights, max_graph_size)
+        wf_workflow = self.wrap_in_workflow(wf_workflow, workflow_with_substitutes)
+        workflow = wfworkflow_to_qhyper_workflow(wf_workflow, workflow.machines, workflow.deadline)
+        weights: dict = workflow.time_matrix.mean(axis=1).to_dict()
+
+        apply_weights_on_tree(tree, weights)
+        verify_common_series_nodes_have_zero_weight(tree, max_graph_size)
+        self.distribute_deadline(tree, workflow.deadline)
+        division_tree = self.build_division_tree(wf_workflow, tree, max_graph_size)
+
+        division = Division("SeriesParallelSplitAlgorithm", workflow)
+
+        for leaf in division_tree.leaves:
+            division.workflows.append(wfworkflow_to_qhyper_workflow(leaf.workflow, workflow.machines, leaf.deadline))
 
         return division
 

@@ -20,17 +20,28 @@ class SPTreeNode(ABC, Node):
 class CompositionNode(SPTreeNode):
     def __init__(self, left: SPTreeNode, right: SPTreeNode, composition: Composition, common_nodes: list[str]):
         super().__init__(name=uuid.uuid1(), children=[left, right])
+        self._left = left
+        self._right = right
         self.operation = composition
         self.common_nodes = common_nodes
 
     def get_graph_nodes(self):
         return set().union(*map(lambda c: c.get_graph_nodes(), self.children))
 
+    @property
+    def left_child(self):
+        return self._left
+
+    @property
+    def right_child(self):
+        return self._right
+
 
 class EdgeNode(SPTreeNode):
     def __init__(self, edge):
         self.u = edge[0]
         self.v = edge[1]
+        self.edge = edge
         super().__init__((self.u, self.v))
 
     def get_graph_nodes(self):
@@ -137,8 +148,6 @@ def get_sp_decomposition_tree(graph: nx.DiGraph) -> SPTreeNode:
 
 
 def apply_weights_on_tree(tree: SPTreeNode, weights: dict):
-    # if 'weight' in tree.__dict__:
-    #     return
     if tree.is_leaf:
         tree.weight = sum([weights[node] for node in tree.get_graph_nodes()])
     elif isinstance(tree, CompositionNode):
