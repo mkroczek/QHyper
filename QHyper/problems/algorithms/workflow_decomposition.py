@@ -157,7 +157,7 @@ class HeftBasedAlgorithm:
         deadline_per_chunk = []
         for chunk in chunks:
             chunk_mean_time_sum = sum(map(lambda task: mean_times[task], chunk))
-            deadline_per_chunk.append(round(chunk_mean_time_sum / mean_times_sum * deadline))
+            deadline_per_chunk.append(chunk_mean_time_sum / mean_times_sum * deadline)
         return deadline_per_chunk
 
     def decompose(self, workflow: Workflow, n_parts: int) -> Division:
@@ -194,7 +194,7 @@ class SeriesParallelSplit:
                 [self.distribute_deadline(child, deadline) for child in tree.children]
             elif tree.operation == Composition.SERIES:
                 weights_sum = sum(child.weight for child in tree.children)
-                [self.distribute_deadline(child, round(child.weight / weights_sum * deadline)) for child in
+                [self.distribute_deadline(child, child.weight / weights_sum * deadline) for child in
                  tree.children]
             else:
                 raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")
@@ -313,7 +313,7 @@ class SeriesParallelSplitEnhanced:
                 [self.distribute_deadline(child, deadline) for child in tree.children]
             elif tree.operation == Composition.SERIES:
                 weights_sum = sum(child.weight for child in tree.children)
-                [self.distribute_deadline(child, round(child.weight / weights_sum * deadline)) for child in
+                [self.distribute_deadline(child, child.weight / weights_sum * deadline) for child in
                  tree.children]
             else:
                 raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")
@@ -455,7 +455,7 @@ class SeriesParallelSplitFinal:
                 [self.distribute_deadline(child, deadline) for child in tree.children]
             elif tree.operation == Composition.SERIES:
                 weights_sum = sum(child.weight for child in tree.children)
-                [self.distribute_deadline(child, round(child.weight / weights_sum * deadline)) for child in
+                [self.distribute_deadline(child, child.weight / weights_sum * deadline) for child in
                  tree.children]
             else:
                 raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")

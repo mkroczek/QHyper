@@ -57,7 +57,7 @@ class DecomposedWorkflowSchedulingSolver:
         return final_assignment
 
     def verify_deadline_is_not_exceeded(self, time, deadline):
-        assert (time <= deadline, "Scheduling result exceeds the deadline!")
+        assert time <= deadline, "Scheduling result exceeds the deadline!"
 
     def solve(self) -> WorkflowSchedule:
         partial_schedules = [s.solve() for s in self.solvers]
