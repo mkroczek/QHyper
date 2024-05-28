@@ -1,6 +1,6 @@
 import copy
 from copy import deepcopy
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 import networkx as nx
 import numpy as np
@@ -42,7 +42,12 @@ class ConnectingTask(Task):
 class Division:
     method: str
     complete_workflow: Workflow
-    workflows: list[Workflow] = field(default_factory=list)
+    workflows: list[Workflow]
+
+
+@dataclass
+class SeriesParallelSplitDivision(Division):
+    tree: SPTreeNode
 
 
 def add_entry_and_exit_tasks(workflow: Workflow) -> Workflow:
@@ -172,7 +177,7 @@ class HeftBasedAlgorithm:
         deadline_per_chunk = self.split_deadline(deadline, split_chunks, mean_times)
         subworkflows = create_subworkflows(workflow, split_chunks)
 
-        division = Division("HeftBasedAlgorithm", workflow)
+        division = Division("HeftBasedAlgorithm", workflow, [])
 
         for subworkflow, subdeadline in zip(subworkflows, deadline_per_chunk):
             division.workflows.append(wfworkflow_to_qhyper_workflow(subworkflow, workflow.machines, subdeadline))
@@ -244,7 +249,7 @@ class SeriesParallelSplit:
         self.distribute_deadline(tree, workflow.deadline)
         division_tree = self.build_division_tree(wf_workflow, tree, max_graph_size)
 
-        division = Division("SeriesParallelSplitAlgorithm", workflow)
+        division = Division("SeriesParallelSplitAlgorithm", workflow, [])
 
         for leaf in division_tree.leaves:
             division.workflows.append(wfworkflow_to_qhyper_workflow(leaf.workflow, workflow.machines, leaf.deadline))
@@ -392,7 +397,7 @@ class SeriesParallelSplitEnhanced:
         self.verify_weights(tree)
         self.distribute_deadline(tree, workflow.deadline)
 
-        division = Division("SeriesParallelSplitEnhancedAlgorithm", workflow)
+        division = Division("SeriesParallelSplitEnhancedAlgorithm", workflow, [])
 
         for leaf in tree.leaves:
             division.workflows.append(
@@ -403,11 +408,14 @@ class SeriesParallelSplitEnhanced:
 
 
 class SeriesParallelSplitFinal:
-    class DivisionTreeNode(AnyNode):
-        def __init__(self, workflow: WfWorkflow, deadline: float, children=None):
-            super().__init__(children=children)
-            self.workflow = workflow
-            self.deadline = deadline
+    class PrunedTreeLeaf(SPTreeNode):
+        def __init__(self, to_override: SPTreeNode):
+            self.nodes: set[str] = to_override.get_graph_nodes()
+            self.weight = to_override.weight
+            super().__init__(to_override.name)
+
+        def get_graph_nodes(self):
+            return self.nodes
 
     def modify_series_nodes(self, tree: SPTreeNode, override_nodes: dict[str, str], workflow: nx.DiGraph,
                             weights: dict[str, float], max_subgraph_size: int) -> SPTreeNode:
@@ -460,16 +468,19 @@ class SeriesParallelSplitFinal:
             else:
                 raise TypeError(f"Unable to distribute deadline for node of type {type(tree)}")
 
-    def build_division_tree(self, workflow: WfWorkflow, tree: SPTreeNode, max_graph_size: int) -> DivisionTreeNode:
+    def prune_tree(self, tree: SPTreeNode, max_graph_size: int):
         graph_nodes = tree.get_graph_nodes()
         if len(graph_nodes) <= max_graph_size:
-            return self.DivisionTreeNode(create_subworkflow(workflow, graph_nodes, "name"), tree.deadline)
+            return self.PrunedTreeLeaf(tree)
         elif tree.is_leaf:
             raise ValueError(f"Demanded max graph size is {max_graph_size}, \
-                    but graph containing {len(graph_nodes)} nodes can't be divided further")
-        else:
-            children_trees = [self.build_division_tree(workflow, child, max_graph_size) for child in tree.children]
-            return self.DivisionTreeNode(None, tree.deadline, children=children_trees)
+                            but graph containing {len(graph_nodes)} nodes can't be divided further")
+        elif isinstance(tree, CompositionNode):
+            left_child = self.prune_tree(tree.left_child, max_graph_size)
+            right_child = self.prune_tree(tree.right_child, max_graph_size)
+            node = CompositionNode(left_child, right_child, tree.operation, tree.common_nodes)
+            node.weight = tree.weight
+            return node
 
     def _get_task(self, old_workflow: WfWorkflow, name: str):
         if name in old_workflow.tasks:
@@ -496,7 +507,7 @@ class SeriesParallelSplitFinal:
         new_workflow = self.wrap_in_workflow(old_workflow, sp_dag)
         return wfworkflow_to_qhyper_workflow(new_workflow, workflow.machines, workflow.deadline)
 
-    def decompose(self, workflow: Workflow, max_graph_size: int) -> Division:
+    def decompose(self, workflow: Workflow, max_graph_size: int) -> SeriesParallelSplitDivision:
         workflow = self.create_sp_workflow(workflow)
         weights: dict = workflow.time_matrix.mean(axis=1).to_dict()
         wf_workflow: WfWorkflow = workflow.wf_instance.workflow
@@ -510,13 +521,14 @@ class SeriesParallelSplitFinal:
 
         apply_weights_on_tree(tree, weights)
         verify_common_series_nodes_have_zero_weight(tree, max_graph_size)
+        tree = self.prune_tree(tree, max_graph_size)
         self.distribute_deadline(tree, workflow.deadline)
-        division_tree = self.build_division_tree(wf_workflow, tree, max_graph_size)
 
-        division = Division("SeriesParallelSplitAlgorithm", workflow)
+        division = SeriesParallelSplitDivision("SeriesParallelSplitAlgorithm", workflow, [], tree)
 
-        for leaf in division_tree.leaves:
-            division.workflows.append(wfworkflow_to_qhyper_workflow(leaf.workflow, workflow.machines, leaf.deadline))
+        for idx, leaf in enumerate(tree.leaves):
+            leaf_workflow = create_subworkflow(wf_workflow, leaf.get_graph_nodes(), f"divided-workflow-{idx}")
+            division.workflows.append(wfworkflow_to_qhyper_workflow(leaf_workflow, workflow.machines, leaf.deadline))
 
         return division
 
@@ -532,7 +544,7 @@ class SimpleSplit:
         sorted_tasks = sorted(distances_from_root, key=distances_from_root.get)
         split_chunks = np.array_split(sorted_tasks, n_parts)
 
-        division = Division("SimpleSplitAlgorithm", workflow)
+        division = Division("SimpleSplitAlgorithm", workflow, [])
 
         for subworkflow, subdeadline in zip(create_subworkflows(workflow, split_chunks),
                                             self.split_deadline(workflow.deadline, split_chunks)):
