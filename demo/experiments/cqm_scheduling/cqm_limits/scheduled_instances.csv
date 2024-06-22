@@ -1,0 +1,14 @@
+,workflow_name,workflow_size,variables_count,constraints_count,cqm_cost,gurobi_cost,cost_increase
+0,/home/marcin/Programming/pegasus-instances/1000genome/chameleon-cloud/1000genome-chameleon-12ch-250k-001.json,492,2460,4860,538035.2364480004,536918.5248672002,1.002079852955486
+1,/home/marcin/Programming/pegasus-instances/1000genome/chameleon-cloud/1000genome-chameleon-22ch-250k-001.json,902,4510,8910,798343.3159296,791073.0919296001,1.009190331556173
+2,/home/marcin/Programming/pegasus-instances/epigenomics/chameleon-cloud/epigenomics-chameleon-ilmn-5seq-50k-001.json,1397,6985,1743,342404.63156160025,342211.9858272003,1.0005629426857574
+3,/home/marcin/Programming/pegasus-instances/cycles/chameleon-cloud/cycles-chameleon-5l-2c-12p-001.json,2182,10910,3802,629772.0476999999,629754.7669775992,1.0000274403995122
+4,/home/marcin/Programming/pegasus-instances/montage/chameleon-cloud/montage-chameleon-dss-075d-001.json,178,890,8062,636076.4203007995,625425.0246143986,1.0170306515844454
+5,/home/marcin/Programming/pegasus-instances/montage/chameleon-cloud/montage-chameleon-2mass-015d-001.json,310,1550,25846,,12324.219839999982,
+6,/home/marcin/Programming/pegasus-instances/cycles/chameleon-cloud/cycles-chameleon-10l-3c-12p-001.json,6543,32715,11403,1152230.944951188,1152212.017915186,1.000016426695528
+7,/home/marcin/Programming/pegasus-instances/montage/chameleon-cloud/montage-chameleon-dss-10d-001.json,472,2360,46744,,1216670.6667935976,
+8,montage_310_mss_160_1,105,525,17001,,4163.4345600000015,
+9,montage_310_mss_160_2,105,525,17001,,4234.032,
+10,montage_310_mss_160_3,105,525,17001,,4148.46144,
+11,montage_310_mss_160_4,6,30,10,19.376640000000002,19.376640000000002,1
+12,montage_103_mss_150,109,545,8929,15776.785216800006,14777.853321600007,1.06759654961

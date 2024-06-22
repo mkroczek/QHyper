@@ -59,22 +59,32 @@ class DecomposedWorkflowSchedulingSolver:
     def verify_deadline_is_not_exceeded(self, time, deadline):
         assert time <= deadline, "Scheduling result exceeds the deadline!"
 
+    def calculate_time_and_cost(self, workflow: Workflow, machine_assignment: dict[str, str]):
+        problem: WorkflowSchedulingOneHot = WorkflowSchedulingOneHot(workflow)
+        time = problem.calculate_solution_timespan(machine_assignment)
+        cost = problem.calculate_solution_cost(machine_assignment)
+        deadline = workflow.deadline
+        self.verify_deadline_is_not_exceeded(time, deadline)
+        return time, cost
+
     def solve(self) -> WorkflowSchedule:
         partial_schedules = [s.solve() for s in self.solvers]
         [self.verify_deadline_is_not_exceeded(schedule.time, schedule.deadline) for schedule in partial_schedules]
         machine_assignments = map(lambda s: s.machine_assignment, partial_schedules)
         merged_machine_assignment = self.merge_machine_assignments(machine_assignments)
-        merged_workflow = self.division.complete_workflow
-        problem: WorkflowSchedulingOneHot = WorkflowSchedulingOneHot(merged_workflow)
-        time = problem.calculate_solution_timespan(merged_machine_assignment)
-        deadline = merged_workflow.deadline
-        self.verify_deadline_is_not_exceeded(time, deadline)
+
+        original_workflow = self.division.original_workflow
+        machine_assignment_without_artificial_nodes = {task: machine for task, machine
+                                                       in merged_machine_assignment.items()
+                                                       if task in original_workflow.task_names}
+
+        original_time, original_cost = self.calculate_time_and_cost(original_workflow, machine_assignment_without_artificial_nodes)
 
         return WorkflowSchedule(
-            cost=problem.calculate_solution_cost(merged_machine_assignment),
-            time=time,
-            deadline=deadline,
+            cost=original_cost,
+            time=original_time,
+            deadline=original_workflow.deadline,
             machine_assignment=merged_machine_assignment,
-            workflow=merged_workflow,
+            workflow=self.division.complete_workflow,
             parts=partial_schedules
         )

@@ -1,0 +1,14 @@
+{
+  "machines": [
+    {
+      "name": "DummyMachine",
+      "memory": 8192000,
+      "cpu": {
+        "speed": 1.0,
+        "count": 100
+      },
+      "price": 1.0,
+      "memory_cost_multiplier": 0.0
+    }
+  ]
+}
